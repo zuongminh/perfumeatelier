@@ -19,9 +19,9 @@ class CreateCartTable extends Migration
             $table->integer('idProduct');
             $table->integer('idProAttr');
             $table->string('AttributeProduct',50);
-            $table->string('PriceNew');
+            $table->integer('PriceNew');
             $table->integer('QuantityBuy');
-            $table->string('Total');
+            $table->integer('Total');
             $table->timestamps();
         });
     }

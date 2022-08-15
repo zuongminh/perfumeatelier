@@ -16,7 +16,7 @@ class CreateProductattributeTable extends Migration
         Schema::create('product_attribute', function (Blueprint $table) {
             $table->increments('idProAttr');
             $table->integer('idProduct');
-            $table->integer('idAttrValue');
+            $table->integer('idAttrValue')->default(11);
             $table->integer('Quantity');
             $table->timestamps();
         });

@@ -22,9 +22,9 @@ class CreateTblProductTable extends Migration
             $table->string('ProductSlug');
             $table->longText('DesProduct');
             $table->text('ShortDes');
-            $table->string('Price');
-            $table->integer('Sold');
-            $table->tinyInteger('StatusPro');
+            $table->integer('Price');
+            $table->integer('Sold')->default(0);
+            $table->tinyInteger('StatusPro')->default(1);
             $table->timestamps();
         });
     }

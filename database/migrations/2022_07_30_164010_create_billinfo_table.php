@@ -17,7 +17,7 @@ class CreateBillinfoTable extends Migration
             $table->integer('idBill');
             $table->integer('idProduct');
             $table->string('AttributeProduct',50);
-            $table->string('Price');
+            $table->integer('Price');
             $table->integer('QuantityBuy');
             $table->timestamps();
         });
