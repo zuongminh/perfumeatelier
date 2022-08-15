@@ -48,7 +48,7 @@ class AdminController extends Controller
             ->join('bill','bill.idBill','=','billinfo.idBill')->whereNotIn('Status',[99])
             ->whereBetween('bill.created_at', [$start_this_month,now()])
             ->select('ProductName','ImageName')
-            ->selectRaw('sum(QuantityBuy) as Sold')
+            ->selectRaw('sum("QuantityBuy") as Sold')
             ->groupBy('ProductName','ImageName')->orderBy('Sold','DESC')->take(6)->get();
 
         $list_topProduct_AllTime = Product::join('productimage','productimage.idProduct','=','product.idProduct')
