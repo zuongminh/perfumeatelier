@@ -13,16 +13,15 @@ class HomeController extends Controller
 {
     // Chuyển đến trang chủ
     public function index(){
-        $days = 30;
         $list_category = Category::get();
         $list_brand = Brand::get();
         $list_blog = Blog::where('Status','1')->get();
 
         $list_new_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-            ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [$days])->where('StatusPro','1')->get();
+            ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [30])->where('StatusPro','1')->get();
 
         $list_featured_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-        ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [$days])
+        ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [30])
         ->where('StatusPro','1')->orderBy('Sold','DESC')->get();
 
         $list_bestsellers_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
