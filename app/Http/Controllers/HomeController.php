@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\Blog;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,13 @@ class HomeController extends Controller
         $list_brand = Brand::get();
         $list_blog = Blog::where('Status','1')->get();
 
+        $sub30days = Carbon::now()->subDays(30)->toDateString();
+
         $list_new_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-            ->whereRaw('Product.created_at >= NOW() - INTERVAL 30 DAY')->where('StatusPro','1')->get();
+            ->whereBetween('product.created_at',[$sub30days,now()])->where('StatusPro','1')->get();
 
         $list_featured_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-        ->whereRaw('Product.created_at >= NOW() - INTERVAL 30 DAY')
-        ->where('StatusPro','1')->orderBy('Sold','DESC')->get();
+            ->whereBetween('product.created_at',[$sub30days,now()])->where('StatusPro','1')->orderBy('Sold','DESC')->get();
 
         $list_bestsellers_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
         ->where('StatusPro','1')->orderBy('Sold','DESC')->get();
