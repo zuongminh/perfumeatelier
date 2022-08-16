@@ -1102,7 +1102,7 @@
                               <li class="nav-item nav-icon dropdown caption-content">
                                   <a href="#" class="search-toggle dropdown-toggle" id="dropdownMenuButton4"
                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                       @if($avatar != null)
+                                       @if($avatar != '')
                                         <img src="{{asset('public/storage/kidoldash/images/user/'.$avatar)}}" class="img-fluid rounded" alt="user">
                                        @else
                                         <img src="{{asset('public/kidoldash/images/user/12.jpg')}}" class="img-fluid rounded" alt="user">
