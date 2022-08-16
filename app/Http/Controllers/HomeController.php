@@ -18,10 +18,10 @@ class HomeController extends Controller
         $list_blog = Blog::where('Status','1')->get();
 
         $list_new_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-            ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [30])->where('StatusPro','1')->get();
+            ->whereRaw('Product.created_at >= NOW() - INTERVAL 30 DAY')->where('StatusPro','1')->get();
 
         $list_featured_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
-        ->whereRaw('Product.created_at >= NOW() - INTERVAL ? DAY', [30])
+        ->whereRaw('Product.created_at >= NOW() - INTERVAL 30 DAY')
         ->where('StatusPro','1')->orderBy('Sold','DESC')->get();
 
         $list_bestsellers_pd = Product::join('productimage','productimage.idProduct','=','product.idProduct')
