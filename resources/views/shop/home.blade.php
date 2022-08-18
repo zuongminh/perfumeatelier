@@ -7,7 +7,7 @@
     <div class="swiper-container slider-active">
         <div class="swiper-wrapper">
             <!--Single Slider Start-->
-            <div class="single-slider swiper-slide animation-style-01" style="background-image: url('public/kidolshop/images/slider/KIDOLBanner.png');">
+            <div class="single-slider swiper-slide animation-style-01" style="background-image: url('public/kidolshop/images/slider/KIDOLBanner.PNG');">
                 <div class="container">
                     <div class="slider-content">
                         <h5 class="sub-title">Nhập: <span class="text-primary">SALE100K</span> <br> Giảm 100K cho mọi đơn hàng</h5>
@@ -23,7 +23,7 @@
             <!--Single Slider End-->
 
             <!--Single Slider Start-->
-            <div class="single-slider swiper-slide animation-style-01" style="background-image: url('public/kidolshop/images/slider/KIDOLBanner2.png');">
+            <div class="single-slider swiper-slide animation-style-01" style="background-image: url('public/kidolshop/images/slider/KIDOLBanner2.PNG');">
                 <div class="container" style="text-align:right;">
                     <div class="slider-content">
                         <h5 class="sub-title sub-title-right">Nhập: <span class="text-info">SALE100K</span> <br> Giảm 100K cho mọi đơn hàng</h5>
