@@ -240,7 +240,7 @@
                                         else echo '';
                                     } 
                                 ?> 
-                                class="category-filter" type="checkbox" id="cat-{{$category->idCategory}}" data-filter="category" value="{{$category->idCategory}}" name="category-filter" style="width:15px;height:15px;">
+                                class="filter-product" type="checkbox" id="cat-{{$category->idCategory}}" data-filter="category" value="{{$category->idCategory}}" name="category-filter" style="width:15px;height:15px;">
                                 <label class="mb-0 ml-2" for="cat-{{$category->idCategory}}" style="font-size:15px;cursor:pointer;"><span style="position:relative; top:2px;">{{$category->CategoryName}}</span></label>
                                 <span style="margin-left:auto">({{App\Http\Controllers\CustomerController::count_cat_search($category->idCategory)}})</span>
                             </li>
@@ -266,7 +266,7 @@
                                         else echo '';
                                     } 
                                 ?> 
-                                class="brand-filter" type="checkbox" id="brand-{{$brand->idBrand}}" data-filter="brand" value="{{$brand->idBrand}}" name="brand-filter" style="width:15px;height:15px;">
+                                class="filter-product" type="checkbox" id="brand-{{$brand->idBrand}}" data-filter="brand" value="{{$brand->idBrand}}" name="brand-filter" style="width:15px;height:15px;">
                                 <label class="mb-0 ml-2" for="brand-{{$brand->idBrand}}" style="font-size:15px;cursor:pointer;"><span style="position:relative; top:2px;">{{$brand->BrandName}}</span></label>
                                 <span style="margin-left:auto">({{App\Http\Controllers\CustomerController::count_brand_search($brand->idBrand)}})</span>
                             </li>

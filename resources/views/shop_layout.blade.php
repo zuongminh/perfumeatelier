@@ -58,16 +58,16 @@
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" class="preloader-deactive">
     <div class="main-wrapper">
         <!--Top Notification Start-->
-        <!-- <div class="top-notification-bar text-center">
+        <div class="top-notification-bar text-center">
             <div class="container">
                 <div class="notification-entry">
-                    <p>All featured product 50% off <a href="#">Shop Now</a></p>
+                    <p>Nhập: SALE10 giảm 10% cho mọi đơn hàng. <a href="{{URL::to('/store')}}">Mua ngay!</a></p>
                 </div>
             </div>
             <div class="notification-close">
                 <button class="notification-close-btn"><i class="fa fa-times"></i></button>
             </div>
-        </div> -->
+        </div>
         <!--Top Notification End-->
 
         <div class="preloader js-preloader flex-center">
@@ -742,20 +742,20 @@
 
     <!-- Modal quick view JS -->
     <script>
+        $('.js-preloader').preloadinator();
+        $('.js-preloader').preloadinator({
+            scroll: false
+        });
+        $('.js-preloader').preloadinator({
+            minTime: 2000
+        });
+        $('.js-preloader').preloadinator({
+            animation: 'fadeOut',
+            animationDuration: 400
+        });
+        
         $(document).ready(function(){  
             APP_URL = '{{url('/')}}' ;
-
-            $('.js-preloader').preloadinator();
-            $('.js-preloader').preloadinator({
-                scroll: false
-            });
-            $('.js-preloader').preloadinator({
-                minTime: 2000
-            });
-            $('.js-preloader').preloadinator({
-                animation: 'fadeOut',
-                animationDuration: 400
-            });
 
             // Quick view sản phẩm
             $('.quick-view-pd').on('click',function(){
@@ -904,9 +904,9 @@
                 }else $('.search-product').fadeOut();
             });
 
-            $('#search-input').on('blur',function(){
-                $('.search-product').fadeOut();
-            });
+            // $('#search-input').on('blur',function(){
+            //     $('.search-product').fadeOut();
+            // });
 
             // Bộ lọc tìm kiếm
             var category = [], tempArrayCat = [], brand = [], tempArrayBrand = [];

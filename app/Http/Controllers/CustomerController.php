@@ -271,14 +271,14 @@ class CustomerController extends Controller
 
             $list_category = Category::get();
             $list_brand = Brand::get();
-            $list_pd_query = Product::join('brand','brand.idBrand','=','product.idBrand')
-                ->join('category','category.idCategory','=','product.idCategory')
-                ->join('productimage','productimage.idProduct','=','product.idProduct')->where('StatusPro','1')
-                ->select('ImageName','product.*','BrandName','CategoryName');
+            $list_pd_query = Product::join('productimage','productimage.idProduct','=','product.idProduct')->where('StatusPro','1')
+                ->select('ImageName','product.*');
             $list_pd_query->where(function ($list_pd_query) use ($keyword){
-                $list_pd_query->where('ProductName','like','%'.$keyword.'%')
-                ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
+                $list_pd_query->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($keyword)); //where('ProductName','like','%'.$keyword.'%')
+                // ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
             });
+            //whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($keyword)) //
+            // $list_pd_query = Product::whereRaw("MATCH (ProductName) AGAINST (? IN BOOLEAN MODE)", Product::fullTextWildcards($keyword));
 
             if(isset($_GET['brand'])) $brand_arr = explode(",",$_GET['brand']);
             if(isset($_GET['category'])) $category_arr = explode(",",$_GET['category']);
@@ -312,7 +312,7 @@ class CustomerController extends Controller
                 else if($_GET['sort_by'] == 'sale') $list_pd_query->join('saleproduct','saleproduct.idProduct','=','product.idProduct')->whereRaw('SaleStart < NOW()')->whereRaw('SaleEnd > NOW()')->orderBy('created_at','desc');
                 else if($_GET['sort_by'] == 'price_desc') $list_pd_query->orderBy('Price','desc');
                 else if($_GET['sort_by'] == 'price_asc') $list_pd_query->orderBy('Price','asc');
-            }else $list_pd_query->orderBy('created_at','desc');
+            }
             
             $count_pd = $list_pd_query->count();
             $list_pd = $list_pd_query->paginate(15);
@@ -330,8 +330,8 @@ class CustomerController extends Controller
             ->join('category','category.idCategory','=','product.idCategory')->where('StatusPro','1')
             ->where('product.idCategory',$idCategory)->select('product.*','BrandName','CategoryName');
             $query_cat->where(function ($query_cat) use ($keyword){
-                $query_cat->where('ProductName','like','%'.$keyword.'%')
-                ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
+                $query_cat->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($keyword));
+                // ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
             });
             $count_cat = $query_cat->count();
             return $count_cat;
@@ -345,8 +345,8 @@ class CustomerController extends Controller
             ->join('category','category.idCategory','=','product.idCategory')->where('StatusPro','1')
             ->where('product.idBrand',$idBrand)->select('product.*','BrandName','CategoryName');
             $query_brand->where(function ($query_brand) use ($keyword){
-                $query_brand->where('ProductName','like','%'.$keyword.'%')
-                ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
+                $query_brand->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($keyword));
+                // ->orWhere('BrandName','like','%'.$keyword.'%')->orWhere('CategoryName','like','%'.$keyword.'%');
             });
             $count_brand = $query_brand->count();
             return $count_brand;

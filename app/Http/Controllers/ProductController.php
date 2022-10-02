@@ -396,8 +396,9 @@ class ProductController extends Controller
                 $product = Product::join('productimage','productimage.idProduct','=','product.idProduct')->where('product.idProduct',$this_pro->idProduct)->first();
 
                 $list_related_product = Product::join('productimage','productimage.idProduct','=','product.idProduct')
+                    ->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($this_pro->ProductName))
                     ->where('idBrand',$this_pro->idBrand)->where('idCategory',$this_pro->idCategory)
-                    ->whereNotIn('product.idProduct',[$this_pro->idProduct])->get();
+                    ->whereNotIn('product.idProduct',[$this_pro->idProduct])->where('StatusPro','1')->get();
                 
                 return view("shop.product.shop-single")->with(compact('list_category','list_brand','product','list_pd_attr','name_attribute','count_wish','list_related_product'));
             }else return Redirect::to('home')->send();
@@ -418,15 +419,15 @@ class ProductController extends Controller
 
             if(isset($_GET['category']) && isset($_GET['brand']))
             {
-                $list_pd_query->whereIn('Product.idCategory',$category_arr)->whereIn('Product.idBrand',$brand_arr);
+                $list_pd_query->whereIn('product.idCategory',$category_arr)->whereIn('product.idBrand',$brand_arr);
             }
             else if(isset($_GET['brand']))
             {
-                $list_pd_query->whereIn('Product.idBrand',$brand_arr);
+                $list_pd_query->whereIn('product.idBrand',$brand_arr);
             }
             else if(isset($_GET['category']))
             {
-                $list_pd_query->whereIn('Product.idCategory',$category_arr);
+                $list_pd_query->whereIn('product.idCategory',$category_arr);
             }
 
             if(isset($_GET['priceMin']) && isset($_GET['priceMax'])){
@@ -461,7 +462,7 @@ class ProductController extends Controller
             {
                 $data = $request->all();
                 $output = '';
-                $product = Product::join('productimage','productimage.idProduct','=','product.idProduct')->where('Product.idProduct',$data['idProduct'])->first();
+                $product = Product::join('productimage','productimage.idProduct','=','product.idProduct')->where('product.idProduct',$data['idProduct'])->first();
 
                 $sale_pd = SaleProduct::where('idProduct',$data['idProduct'])->whereRaw('SaleStart < NOW()')->whereRaw('SaleEnd > NOW()')->first();
                 $SalePrice = 0;
@@ -578,7 +579,7 @@ class ProductController extends Controller
                 ->whereNotIn('product.idProduct',[$data['idProduct']])
                 ->select('ImageName','product.*','BrandName');
                 $pds->where(function ($pds) use ($value){
-                    $pds->where('ProductName','like','%'.$value.'%')->orWhere('BrandName','like','%'.$value.'%');
+                    $pds->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($value));
                 });
                 
             $get_pd = $pds->get();
@@ -590,7 +591,7 @@ class ProductController extends Controller
                 $image = json_decode($pd->ImageName)[0];
             $output .= '<div class="product-item col-md-3 select-pd" id="product-item-'.$pd->idProduct.'" data-id="'.$pd->idProduct.'">
                             <div class="product-image-compare mb-3" id="product-image-'.$pd->idProduct.'">
-                                <label for="chk-pd-'.$pd->idProduct.'"><img src="public/storage/kidoldash/images/product/'.$image.'" class="rounded w-100 img-fluid"></label>       
+                                <label for="chk-pd-'.$pd->idProduct.'"><img src="/public/storage/kidoldash/images/product/'.$image.'" class="rounded w-100 img-fluid"></label>       
                                 <div class="product-title-compare">
                                     <div class="product-name-compare text-center">
                                         <input type="checkbox" class="checkstatus d-none" id="chk-pd-'.$pd->idProduct.'" name="chk_product[]" value="'.$pd->idProduct.'" data-id="'.$pd->idProduct.'">
@@ -621,7 +622,8 @@ class ProductController extends Controller
                 ->where('StatusPro','1')
                 ->select('ImageName','ProductName','BrandName','CategoryName','ProductSlug');
                 $pds->where(function ($pds) use ($value){
-                    $pds->where('ProductName','like','%'.$value.'%')->orWhere('BrandName','like','%'.$value.'%')->orWhere('CategoryName','like','%'.$value.'%');
+                    $pds->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($value));
+                    // ->orWhere('BrandName','like','%'.$value.'%')->orWhere('CategoryName','like','%'.$value.'%');
                 });
             $get_pd = $pds->limit(3)->get();
 
@@ -651,9 +653,9 @@ class ProductController extends Controller
                     $image = json_decode($pd->ImageName)[0];
                     $output .='
                     <li class="search-product-item d-flex align-items-center">
-                        <a class="search-product-text" href="shop-single/'.$pd->ProductSlug.'">
+                        <a class="search-product-text" href="/../kidolshop/shop-single/'.$pd->ProductSlug.'">
                             <div class="d-flex align-items-center">
-                                <img width="50" height="50" src="public/storage/kidoldash/images/product/'.$image.'" alt="">
+                                <img width="50" height="50" src="/../kidolshop/public/storage/kidoldash/images/product/'.$image.'" alt="">
                                 <span class="two-line ml-2">'.$pd->ProductName.'</span>
                             </div>
                         </a>

@@ -92,7 +92,7 @@ class BillController extends Controller
 
             $list_bill_info = BillInfo::join('product','product.idProduct','=','billinfo.idProduct')
                 ->join('productimage','productimage.idProduct','=','billinfo.idProduct')
-                ->where('Billinfo.idBill',$idBill)
+                ->where('billinfo.idBill',$idBill)
                 ->select('product.ProductName','product.idProduct','productimage.ImageName','billinfo.*')->get();
             
             return view("admin.bill.bill-info")->with(compact('address','list_bill_info'));
@@ -206,7 +206,7 @@ class BillController extends Controller
 
             $list_bill_info = BillInfo::join('product','product.idProduct','=','billinfo.idProduct')
                 ->join('productimage','productimage.idProduct','=','billinfo.idProduct')
-                ->where('Billinfo.idBill',$idBill)
+                ->where('billinfo.idBill',$idBill)
                 ->select('product.ProductName','product.idProduct','product.ProductSlug','productimage.ImageName','billinfo.*')->get();
 
             return view("shop.customer.ordered-info")->with(compact('list_category','list_brand','address','list_bill_info'));

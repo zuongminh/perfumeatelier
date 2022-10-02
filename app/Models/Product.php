@@ -12,15 +12,33 @@ class Product extends Model
     protected $primaryKey = 'idProduct';
     protected $table = 'product';
 
-    // public function category(){
-    //     return $this->belongsTo('App\Models\Category','idCategory');
-    // }
+    protected static function fullTextWildcards($term)
+   {
+       // removing symbols used by MySQL
+       $reservedSymbols = ['-', '+', '<', '>', '@', '(', ')', '~'];
+       $term = str_replace($reservedSymbols, '', $term);
 
-    // public function brand(){
-    //     return $this->belongsTo('App\Models\Brand','idBrand');
-    // }
+       $words = explode(' ', $term);
 
-    // public function productimage(){
-    //     return $this->hasOne('App\Models\ProductImage','idProduct');
-    // }
+       foreach ($words as $key => $word) {
+           /*
+            * applying + operator (required word) only big words
+            * because smaller ones are not indexed by mysql
+            */
+           if (strlen($word) >= 1) {
+               $words[$key] = $word .',';
+           }
+       }
+       
+       $searchTerm = implode(' ', $words);
+
+       return $searchTerm;
+   }
+
+   public function scopeFullTextSearch($query, $columns, $term)
+   {
+       $query->whereRaw("MATCH ({$columns}) AGAINST (? IN BOOLEAN MODE)", $this->fullTextWildcards($term));
+
+       return $query;
+   }
 }

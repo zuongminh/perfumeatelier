@@ -2059,13 +2059,13 @@ blockquote p {
 /*  3.1 - Header Top CSS
 /*----------------------------------------*/
 .top-notification-bar {
-  -webkit-background: -webkit-gradient(linear, left top, right top, from(#FFEFD5), to(#FFEFD5));
-  -webkit-background: -webkit-linear-gradient(left, #FFEFD5 0%, #FFEFD5 100%);
-  -moz-background: linear-gradient(to right, #FFEFD5 0%, #FFEFD5 100%);
-  -ms-background: linear-gradient(to right, #FFEFD5 0%, #FFEFD5 100%);
-  -o-background: -o-linear-gradient(left,#FFEFD5 0%, #FFEFD5 100%);
-  background: -webkit-gradient(linear, left top, right top, from(#FFEFD5), to(#FFEFD5));
-  background: linear-gradient(to right, #FFEFD5 0%, #FFEFD5 100%);
+  -webkit-background: -webkit-gradient(linear, left top, right top, from(#fff), to(#f379a7));
+  -webkit-background: -webkit-linear-gradient(left, #fff 0%, #f379a7 100%);
+  -moz-background: linear-gradient(to right, #fff 0%, #f379a7 100%);
+  -ms-background: linear-gradient(to right, #fff 0%, #f379a7 100%);
+  -o-background: -o-linear-gradient(left,#fff 0%, #f379a7 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#fff), to(#f379a7));
+  background: linear-gradient(to right, #fff 0%, #f379a7 100%);
   position: relative;
   padding: 10px 0;
 }
@@ -2082,7 +2082,7 @@ blockquote p {
 } */
 
 .top-notification-bar .notification-entry p {
-  color: #030303;
+  color: #000;
 }
 
 .top-notification-bar .notification-close {

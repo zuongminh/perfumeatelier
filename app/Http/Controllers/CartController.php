@@ -43,6 +43,8 @@ class CartController extends Controller
             ->join('product_attribute','product_attribute.idProAttr','=','cart.idProAttr')
             ->where('idCustomer',Session::get('idCustomer'))->get();
 
+        
+
         return view("shop.cart.cart")->with(compact('list_category','list_brand','list_pd_cart'));
     }
 
