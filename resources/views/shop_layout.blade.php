@@ -740,6 +740,37 @@
     <script src="{{asset('public/kidolshop/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('public/kidolshop/js/responsive.bootstrap.min.js')}}"></script>
 
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+      var chatbox = document.getElementById('fb-customer-chat');
+      chatbox.setAttribute("page_id", "102364102626836");
+      chatbox.setAttribute("attribution", "biz_inbox");
+    </script>
+
+    <!-- Your SDK code -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          xfbml            : true,
+          version          : 'v15.0'
+        });
+      };
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!-- Modal quick view JS -->
     <script>
         $('.js-preloader').preloadinator();
@@ -904,9 +935,9 @@
                 }else $('.search-product').fadeOut();
             });
 
-            // $('#search-input').on('blur',function(){
-            //     $('.search-product').fadeOut();
-            // });
+            $('#search-input').on('blur',function(){
+                $('.search-product').fadeOut();
+            });
 
             // Bộ lọc tìm kiếm
             var category = [], tempArrayCat = [], brand = [], tempArrayBrand = [];

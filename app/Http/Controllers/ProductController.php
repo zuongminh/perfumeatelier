@@ -16,7 +16,9 @@ use App\Models\AttributeValue   ;
 use App\Models\ProductAttriBute;
 use App\Models\Voucher;
 use App\Models\WishList;
+use App\Models\Viewer;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use PDO;
 
 class ProductController extends Controller
@@ -382,7 +384,12 @@ class ProductController extends Controller
             $list_brand = Brand::get();
 
             $this_pro = Product::where('ProductSlug',$ProductSlug)->first();
+            
             if($this_pro->StatusPro != '0'){
+                
+
+                $idBrand = $this_pro->idBrand;
+                $idCategory = $this_pro->idCategory;
                 $count_wish = WishList::where('idProduct',$this_pro->idProduct)->count();
     
                 $list_pd_attr = ProductAttriBute::join('attribute_value','attribute_value.idAttrValue','=','product_attribute.idAttrValue')
@@ -395,11 +402,17 @@ class ProductController extends Controller
     
                 $product = Product::join('productimage','productimage.idProduct','=','product.idProduct')->where('product.idProduct',$this_pro->idProduct)->first();
 
-                $list_related_product = Product::join('productimage','productimage.idProduct','=','product.idProduct')
+                $list_related_products = Product::join('productimage','productimage.idProduct','=','product.idProduct')
                     ->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($this_pro->ProductName))
-                    ->where('idBrand',$this_pro->idBrand)->where('idCategory',$this_pro->idCategory)
-                    ->whereNotIn('product.idProduct',[$this_pro->idProduct])->where('StatusPro','1')->get();
+                    ->whereNotIn('product.idProduct',[$this_pro->idProduct])->where('StatusPro','1')
+                    ->select('ImageName','product.*');
+
+                $list_related_products->where(function ($list_related_products) use ($idBrand, $idCategory){
+                    $list_related_products->orWhere('idBrand',$idBrand)->orWhere('idCategory',$idCategory);
+                });
                 
+                $list_related_product = $list_related_products->get();
+
                 return view("shop.product.shop-single")->with(compact('list_category','list_brand','product','list_pd_attr','name_attribute','count_wish','list_related_product'));
             }else return Redirect::to('home')->send();
         }
@@ -620,11 +633,20 @@ class ProductController extends Controller
                 ->join('brand','brand.idBrand','=','product.idBrand')
                 ->join('category','category.idCategory','=','product.idCategory')
                 ->where('StatusPro','1')
-                ->select('ImageName','ProductName','BrandName','CategoryName','ProductSlug');
+                ->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($value))
+                ->select('ImageName','ProductName','ProductSlug');
+
+            if($pds->count() < 1){
+                $pds = Product::join('productimage','productimage.idProduct','=','product.idProduct')
+                    ->join('brand','brand.idBrand','=','product.idBrand')
+                    ->join('category','category.idCategory','=','product.idCategory')
+                    ->where('StatusPro','1')
+                    ->select('ImageName','ProductName','BrandName','CategoryName','ProductSlug');
                 $pds->where(function ($pds) use ($value){
-                    $pds->whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($value));
-                    // ->orWhere('BrandName','like','%'.$value.'%')->orWhere('CategoryName','like','%'.$value.'%');
+                    $pds->orWhere('BrandName','like','%'.$value.'%')->orWhere('CategoryName','like','%'.$value.'%');
                 });
+            }
+
             $get_pd = $pds->limit(3)->get();
 
             if($get_cat->count() > 0){

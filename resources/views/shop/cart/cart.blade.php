@@ -109,6 +109,71 @@
                 </div>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-lg-12 mt-30 h2" style="color:#222;">CÓ THỂ BẠN SẼ THÍCH</div>
+            <div class="col-lg-12">
+                <?php $id_pds = json_decode($recommend_pds) ?>
+                <div class="row">
+                    @foreach($id_pds as $key => $id_pd)
+                    <?php $product = App\Http\Controllers\CartController::get_product($id_pd); ?>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-product">
+                            <div class="product-image">
+                                <?php $image = json_decode($product->ImageName)[0];?>
+                                <a href="{{URL::to('/shop-single/'.$product->ProductSlug)}}">
+                                    <img src="{{asset('public/storage/kidoldash/images/product/'.$image)}}" alt="">
+                                </a>
+
+                                <?php
+                                    $SalePrice = $product->Price;  
+                                    $get_time_sale = App\Http\Controllers\ProductController::get_sale_pd($product->idProduct); 
+                                ?>
+
+                                @if($get_time_sale)
+                                    <?php $SalePrice = $product->Price - ($product->Price/100) * $get_time_sale->Percent; ?>
+                                    <div class="product-countdown">
+                                        <div data-countdown="{{$get_time_sale->SaleEnd}}"></div>
+                                    </div>
+                                    @if($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Hết hàng</span>
+                                    @else <span class="sticker-new label-sale">-{{$get_time_sale->Percent}}%</span>
+                                    @endif
+                                @elseif($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Hết hàng</span>;
+                                @endif
+
+                                <div class="action-links">
+                                    <ul>
+                                        <!-- <li><a class="AddToCart-Single" data-id="{{$product->idProduct}}" data-PriceNew="{{$SalePrice}}" data-token="{{csrf_token()}}" data-tooltip="tooltip" data-placement="left" title="Thêm vào giỏ hàng"><i class="icon-shopping-bag"></i></a></li> -->
+                                        <li><a class="add-to-compare" data-idcat="{{$product->idCategory}}" id="{{$product->idProduct}}" data-tooltip="tooltip" data-placement="left" title="So sánh"><i class="icon-sliders"></i></a></li>
+                                        <li><a class="add-to-wishlist" data-id="{{$product->idProduct}}" data-tooltip="tooltip" data-placement="left" title="Thêm vào danh sách yêu thích"><i class="icon-heart"></i></a></li>
+                                        <li><a class="quick-view-pd" data-id="{{$product->idProduct}}" data-tooltip="tooltip" data-placement="left" title="Xem nhanh"><i class="icon-eye"></i></a></li> 
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-content text-center">
+                                <!-- <ul class="rating">
+                                    <li class="rating-on"><i class="fa fa-star-o"></i></li>
+                                    <li class="rating-on"><i class="fa fa-star-o"></i></li>
+                                    <li class="rating-on"><i class="fa fa-star-o"></i></li>
+                                    <li class="rating-on"><i class="fa fa-star-o"></i></li>
+                                    <li class="rating-on"><i class="fa fa-star-o"></i></li>
+                                </ul> -->
+                                <h4 class="product-name"><a href="{{URL::to('/shop-single/'.$product->ProductSlug)}}">{{$product->ProductName}}</a></h4>
+                                <div class="price-box">
+                                    @if($SalePrice < $product->Price)
+                                        <span class="old-price">{{number_format($product->Price,0,',','.')}}đ</span>
+                                        <span class="current-price">{{number_format(round($SalePrice,-3),0,',','.')}}đ</span>
+                                    @else
+                                        <span class="current-price">{{number_format($product->Price,0,',','.')}}đ</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>                 
+                    @endforeach
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!--Cart End-->

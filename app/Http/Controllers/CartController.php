@@ -19,6 +19,18 @@ use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
+    function array_zip_merge() {
+        $output = array();
+        // The loop incrementer takes each array out of the loop as it gets emptied by array_shift().
+        for ($args = func_get_args(); count($args); $args = array_filter($args)) {
+          // &$arg allows array_shift() to change the original.
+          foreach ($args as &$arg) {
+            $output[] = array_shift($arg);
+          }
+        }
+        return $output;
+    }  
+
     // Kiểm tra đăng nhập
     public function checkLogin(){
         $idCustomer = Session::get('idCustomer');
@@ -43,9 +55,46 @@ class CartController extends Controller
             ->join('product_attribute','product_attribute.idProAttr','=','cart.idProAttr')
             ->where('idCustomer',Session::get('idCustomer'))->get();
 
-        
+        foreach($list_pd_cart as $key => $pd_cart){
+            $idBrand = $pd_cart->idBrand;
+            $idCategory = $pd_cart->idCategory;
 
-        return view("shop.cart.cart")->with(compact('list_category','list_brand','list_pd_cart'));
+            // Danh sách sản phẩm gợi ý của 1 sản phẩm trong giỏ hàng
+            $list_recommend_pds = Product::whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($pd_cart->ProductName))
+                ->whereNotIn('idProduct',[$pd_cart->idProduct])->where('StatusPro','1')
+                ->select('idProduct');
+            $list_recommend_pds->where(function ($list_recommend_pds) use ($idBrand, $idCategory){
+                $list_recommend_pds->orWhere('idBrand',$idBrand)->orWhere('idCategory',$idCategory);
+            });
+            $list_recommend_pd = $list_recommend_pds->get();
+
+            // Thêm từng sản phẩm gợi ý của 1 sản phẩm vào 1 mảng
+            foreach($list_recommend_pd as $recommend_pd){
+                $recommend_pds_array[$key][] = $recommend_pd->idProduct;
+            }   
+
+            // Thêm từng mảng thứ $key vào 1 mảng lớn
+            $recommend_pds_arrays[] = $recommend_pds_array[$key];
+        }
+
+        // Hàm gộp mảng, xen kẽ các phần tử của từng mảng
+        for ($args = $recommend_pds_arrays; count($args); $args = array_filter($args)) {
+            // &$arg allows array_shift() to change the original.
+            foreach ($args as &$arg) {
+              $output[] = array_shift($arg);
+            }
+        }
+
+        $recommend_pds_unique = array_unique($output); // Lọc các phần tử trùng nhau
+        $recommend_pds = json_encode($recommend_pds_unique);
+
+        return view("shop.cart.cart")->with(compact('list_category','list_brand','list_pd_cart','recommend_pds'));
+    }
+
+    // Gợi ý sản phẩm trang giỏ hàng
+    public static function get_product($idProduct){
+        return Product::join('productimage','productimage.idProduct','=','product.idProduct')
+            ->where('product.idProduct',$idProduct)->select('ImageName','product.*')->first();
     }
 
     // Chuyển đến trang thanh toán
