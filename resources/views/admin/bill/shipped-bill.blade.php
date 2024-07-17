@@ -22,6 +22,7 @@
                                 <th>Mã ĐH</th>
                                 <th>Tên Tài Khoản</th>
                                 <th>SĐT</th>
+                                <th>Thanh Toán</th>
                                 <th>Ngày Đặt Hàng</th>
                                 <th>Ngày Giao Hàng</th>
                                 <th>Thao tác</th>
@@ -33,6 +34,7 @@
                                 <td>{{$bill->idBill}}</td>
                                 <td>{{$bill->username}}</td>
                                 <td>{{$bill->CusPhone}}</td>
+                                <td>@if($bill->Payment == 'vnpay') VNPay @else Khi nhận hàng @endif</td>
                                 <td>{{$bill->created_at}}</td>
                                 <td>{{$bill->ReceiveDate}}</td>
 

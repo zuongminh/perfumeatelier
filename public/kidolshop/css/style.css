@@ -47,9 +47,7 @@
 /*  01. Theme default CSS
 /*----------------------------------------*/
 /*-- Google Font --*/
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
 /*-- Common Style --*/
 *, *::after, *::before {
   -webkit-box-sizing: border-box;
@@ -57,7 +55,7 @@
 }
 
 :root {
-  --primary-color: #f379a7;
+  --primary-color: #fbfbfb;
 }
 
 
@@ -67,19 +65,19 @@
 } */
 
 body {
-  background-color: #ffffff;
+  background-color: #fcfcfc;
   font-size: 16px;
   line-height: 1.75;
   font-style: normal;
   font-weight: 400;
   visibility: visible;
-  font-family: "Roboto", serif;
-  color: #666666;
+  font-family: "Montserrat", sans-serif;
+  color: #000000;
   position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Rubik", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #222222;
   font-weight: 600;
   margin-top: 0;
@@ -163,7 +161,7 @@ a:focus {
 
 a:hover {
   text-decoration: none;
-  color: #f379a7;
+  color: #000000;
 }
 
 button, input[type="submit"] {
@@ -238,28 +236,29 @@ figure {
 }
 
 /*Background Color*/
+/*Background Color*/
 .bg-white {
-  background-color: #ffffff !important;
+  background-color: #ffffff !important; /* White */
 }
 
 .bg-gray {
-  background-color: #f8f8f8 !important;
+  background-color: #808080 !important; /* Gray */
 }
 
 .bg-dark {
-  background-color: #222222 !important;
+  background-color: #000000 !important; /* Black */
 }
 
 .bg-primary {
-  background-color: #f379a7 !important;
+  background-color: #000000 !important; /* Black */
 }
 
 .bg-primary-light {
-  background-color: #feedec !important;
+  background-color: #ffffff !important; /* White */
 }
 
 .bg-secondary {
-  background-color: #6c757d !important;
+  background-color: #808080 !important; /* Gray */
 }
 
 .bg-success {
@@ -296,7 +295,7 @@ figure {
 }
 
 .text-primary {
-  color: #f379a7 !important;
+  color: #000000 !important;
 }
 
 .text-secondary {
@@ -308,7 +307,7 @@ figure {
 }
 
 .text-danger {
-  color: #f379a7 !important;
+  color: #000000 !important;
 }
 
 .text-warning {
@@ -508,7 +507,7 @@ figure {
 }
 
 .page-pagination .pagination .page-item.active .page-link, .page-pagination .pagination .page-item .page-link:hover {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -548,7 +547,7 @@ figure {
 .scrolltotop {
   width: 40px;
   height: 40px;
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
   border: none;
   position: fixed;
@@ -616,7 +615,7 @@ figure {
   overflow: hidden;
   background-color: transparent;
   border-color: transparent;
-  color: #666666;
+  color: #ffffff;
   border-radius: 0;
   text-transform: uppercase;
   font-size: 14px;
@@ -742,9 +741,8 @@ figure {
 }
 
 .btn-primary {
-  background-color: #f379a7;
-  border-color: #f379a7;
-  color: #ffffff;
+  background-color: #000;
+    border: 1px solid #000;
 }
 
 .btn-primary:hover {
@@ -874,14 +872,14 @@ figure {
 }
 
 .btn-dribbble {
-  background-color: #EA4C8A;
-  border-color: #EA4C8A;
+  background-color: #000;
+    border: 1px solid #000;
   color: #ffffff;
 }
 
 .btn-dribbble:hover {
-  background-color: #e7357b;
-  border-color: #e7357b;
+  background-color: #000;
+    border: 1px solid #000;
 }
 
 .btn-dropbox {
@@ -1116,14 +1114,14 @@ figure {
 }
 
 .btn-polymer {
-  background-color: #F87292;
-  border-color: #F87292;
+  background-color: #000;
+  border: 1px solid #000;
   color: #ffffff;
 }
 
 .btn-polymer:hover {
-  background-color: #f75a7f;
-  border-color: #f75a7f;
+  background-color: #000;
+    border: 1px solid #000;
 }
 
 .btn-rss {
@@ -1292,14 +1290,14 @@ figure {
 }
 
 .btn-flickr {
-  background-color: #FE0084;
-  border-color: #FE0084;
+  background-color: #000;
+    border: 1px solid #000;
   color: #ffffff;
 }
 
 .btn-flickr:hover {
-  background-color: #e50077;
-  border-color: #e50077;
+  background-color: #000;
+  border: 1px solid #000;
 }
 
 .btn-odnoklassniki {
@@ -1504,7 +1502,8 @@ select {
   background-image: url(../images/icons/select-arrow-down.png);
   background-position: calc(100% - 15px) 50%;
   background-repeat: no-repeat;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   width: 100%;
   border: none;
   background-color: #ffffff;
@@ -1575,7 +1574,7 @@ select {
 }
 
 .ht-mcs-switcher input:checked + label::before {
-  background-color: #f379a7;
+  background-color: #000000;
   -webkit-box-shadow: 0 0 15px rgba(243, 79, 63, 0.5);
           box-shadow: 0 0 15px rgba(243, 79, 63, 0.5);
   left: 26px;
@@ -1626,7 +1625,7 @@ select {
 }
 
 .ht-mcs-switcher.primary input:checked + label::before {
-  background-color: #f379a7;
+  background-color: #000000;
   -webkit-box-shadow: 0 0 15px rgba(243, 79, 63, 0.5);
           box-shadow: 0 0 15px rgba(243, 79, 63, 0.5);
 }
@@ -1729,10 +1728,10 @@ select {
 }
 
 .cus-checkbox input:checked + label::before {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   content: '\f00c';
-  font-family: FontAwesome;
+  font-family:  'Montserrat', sans-serif;;
   color: #ffffff;
 }
 
@@ -1776,8 +1775,8 @@ select {
 }
 
 .cus-checkbox.primary input:checked + .icon {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 .cus-checkbox.secondary input:checked + .icon {
@@ -1898,7 +1897,7 @@ select {
   border-radius: 50%;
   position: absolute;
   left: 0;
-  border: 1px solid #f379a7;
+  border: 1px solid #000000;
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
@@ -1921,7 +1920,7 @@ select {
   top: 0;
   width: 20px;
   height: 20px;
-  background-color: #f379a7;
+  background-color: #000000;
   opacity: 0;
   -webkit-transform: scale(0.5);
   -ms-transform: scale(0.5);
@@ -1932,7 +1931,7 @@ select {
 }
 
 .cus-radio.primary input:checked + .icon {
-  background-color: #f379a7;
+  background-color: #000000;
 }
 
 .cus-radio.secondary input:checked + .icon {
@@ -2034,7 +2033,7 @@ blockquote {
   padding: 30px 45px;
   margin: 31px 0 31px 40px;
   border: 1px solid #ebebeb;
-  border-left: 4px solid #f379a7;
+  border-left: 4px solid #000000;
 }
 
 @media only screen and (max-width: 575px) {
@@ -2058,31 +2057,35 @@ blockquote p {
 /*--
 /*  3.1 - Header Top CSS
 /*----------------------------------------*/
-.top-notification-bar {
-  -webkit-background: -webkit-gradient(linear, left top, right top, from(#fff), to(#f379a7));
-  -webkit-background: -webkit-linear-gradient(left, #fff 0%, #f379a7 100%);
-  -moz-background: linear-gradient(to right, #fff 0%, #f379a7 100%);
-  -ms-background: linear-gradient(to right, #fff 0%, #f379a7 100%);
-  -o-background: -o-linear-gradient(left,#fff 0%, #f379a7 100%);
-  background: -webkit-gradient(linear, left top, right top, from(#fff), to(#f379a7));
-  background: linear-gradient(to right, #fff 0%, #f379a7 100%);
-  position: relative;
-  padding: 10px 0;
-}
- /*.top-notification-bar {
-  -webkit-background: -webkit-gradient(linear, left top, right top, from(#323232), to(#323232));
-  -webkit-background: -webkit-linear-gradient(left, #323232 0%, #323232 100%);
-  -moz-background: linear-gradient(to right, #323232 0%, #323232 100%);
-  -ms-background: linear-gradient(to right, #323232 0%, #323232 100%);
-  -o-background: -o-linear-gradient(left, #323232 0%, #323232 100%);
-  background: -webkit-gradient(linear, left top, right top, from(#323232), to(#323232));
-  background: linear-gradient(to right, #323232 0%, #323232 100%);
+/* .top-notification-bar {
+  -webkit-background: -webkit-gradient(linear, left top, right top, from(#fff), to(#000000));
+  -webkit-background: -webkit-linear-gradient(left, #fff 0%, #000000 100%);
+  -moz-background: linear-gradient(to right, #fff 0%, #000000 100%);
+  -ms-background: linear-gradient(to right, #fff 0%, #000000 100%);
+  -o-background: -o-linear-gradient(left,#fff 0%, #000000 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#fff), to(#000000));
+  background: linear-gradient(to right, #fff 0%, #000000 100%);
   position: relative;
   padding: 10px 0;
 } */
+.top-notification-bar {
+  -webkit-background: -webkit-gradient(linear, left top, right top, from(#fff), to(#000000));
+  -webkit-background: -webkit-linear-gradient(left, #fff 0%, #000000 100%);
+  -moz-background: linear-gradient(to right, #fff 0%, #000000 100%);
+  -ms-background: linear-gradient(to right, #fff 0%, #000000 100%);
+  -o-background: -o-linear-gradient(left,#fff 0%, #000000 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#fff), to(#000000));
+  background: black;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 0; /* Reduced from 10px to 5px */
+  z-index: 9999;
+}
 
 .top-notification-bar .notification-entry p {
-  color: #000;
+  color: #ffffff;
 }
 
 .top-notification-bar .notification-close {
@@ -2113,7 +2116,9 @@ blockquote p {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
+  border-bottom: 0.5px solid #00000026; /* Add this line */
 }
+
 
 .header-section.sticky {
   background-color: rgba(255, 255, 255, 0.9);
@@ -2162,10 +2167,10 @@ blockquote p {
 
 .site-main-nav .site-nav ul > li > a {
   position: relative;
-  font-size: 13px;
+  font-size: 14px;
   text-transform: uppercase;
   color: #222222;
-  font-weight: 500;
+  font-weight: 700;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
@@ -2219,16 +2224,10 @@ blockquote p {
   background: #43b5f4;
 }
 
-.site-main-nav .site-nav ul > li.menu-item-has-children > a::after {
-  content: "\f107";
-  font-family: fontAwesome;
-  margin-left: 5px;
-  font-size: 16px;
-  color: #222222;
-}
+
 
 .site-main-nav .site-nav ul > li:hover > a {
-  color: #f379a7;
+  color: #000000;
 }
 
 .site-main-nav .site-nav ul > li .sub-menu {
@@ -2275,7 +2274,7 @@ blockquote p {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   content: "\f105";
-  font-family: fontAwesome;
+  font-family: 'Montserrat', sans-serif;
   margin-left: 5px;
   font-size: 16px;
   color: #222222;
@@ -2291,7 +2290,7 @@ blockquote p {
 }
 
 .site-main-nav .site-nav ul > li .sub-menu li:hover > a {
-  color: #f379a7;
+  color: #000000;
 }
 
 .site-main-nav .site-nav ul > li .sub-menu li .sub-menu {
@@ -2366,7 +2365,7 @@ blockquote p {
 }
 
 .site-main-nav .site-nav ul > li .mega-sub-menu > .mega-dropdown > .mega-title:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .site-main-nav .site-nav ul > li .mega-sub-menu > .mega-dropdown > .mega-title::after {
@@ -2412,7 +2411,7 @@ blockquote p {
 }
 
 .site-main-nav .site-nav ul > li .mega-sub-menu > .mega-dropdown > .mega-item > li:hover > a {
-  color: #f379a7;
+  color: #000000;
 }
 
 .site-main-nav .site-nav ul > li:hover .sub-menu,
@@ -2543,7 +2542,7 @@ blockquote p {
   width: 20px;
   height: 20px;
   line-height: 20px;
-  background: #f379a7;
+  background: #000000;
   border-radius: 100%;
   text-align: center;
   font-weight: 400;
@@ -2575,7 +2574,7 @@ blockquote p {
 }
 
 .header-meta-info .header-account .header-account-list.top-link .dropdown-menu li a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .header-meta-info .header-account .header-account-list.mini-cart .dropdown-menu {
@@ -2626,7 +2625,7 @@ blockquote p {
 .header-meta-info .header-account .header-account-list.mini-cart .dropdown-menu .product-cart .single-cart-box .cart-img .pro-quantity {
   border-radius: 100%;
   color: #ffffff;
-  background-color: #f379a7;
+  background-color: #000000;
   font-size: 12px;
   line-height: 23px;
   min-width: 27px;
@@ -2659,7 +2658,8 @@ blockquote p {
 .header-meta-info .header-account .header-account-list.mini-cart .dropdown-menu .product-cart .single-cart-box .cart-content .title a {
   display: block;
   font-size: 14px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-weight: 400;
   line-height: 20px;
   text-transform: capitalize;
@@ -2669,7 +2669,7 @@ blockquote p {
   display: inline-block;
   font-size: 14px;
   line-height: 20px;
-  color: #f379a7;
+  color: #000000;
   font-weight: 500;
   margin-right: 3px;
 }
@@ -2708,7 +2708,7 @@ blockquote p {
 }
 
 .header-meta-info .header-account .header-account-list.mini-cart .dropdown-menu .product-total .cart-total li span {
-  color: #f379a7;
+  color: #000000;
   display: block;
   float: right;
 }
@@ -2725,8 +2725,8 @@ blockquote p {
 }
 
 .header-meta-info .header-account .header-account-list.mini-cart .dropdown-menu .product-btn .btn:hover {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 .header-meta-info .header-account .header-account-list.mobile-menu-trigger button {
@@ -2755,7 +2755,7 @@ blockquote p {
 }
 
 .header-meta-info .header-account .header-account-list.mobile-menu-trigger button:hover span {
-  background-color: #f379a7;
+  background-color: #000000;
 }
 
 .header-mobile {
@@ -2844,7 +2844,7 @@ blockquote p {
 }
 
 .header-social .social li a:hover {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -3127,7 +3127,8 @@ blockquote p {
 .slider-content .sub-title {
   font-size: 16px;
   color: #222222;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   line-height: 20px;
   font-weight: 400;
   border-left: 2px solid #000000;
@@ -3139,7 +3140,8 @@ blockquote p {
   font-weight: 400;
   line-height: 63px;
   color: #323232;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-size: 63px;
   text-transform: uppercase;
   margin-bottom: 24px;
@@ -3154,7 +3156,8 @@ blockquote p {
 
 .slider-content p {
   color: #323232;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-weight: 300;
   font-size: 24px;
   line-height: 24px;
@@ -3303,7 +3306,7 @@ blockquote p {
 
 .slider-active .swiper-next:hover,
 .slider-active .swiper-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .slider-active .swiper-next {
@@ -3344,7 +3347,7 @@ blockquote p {
 }
 
 .slider-active .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  background-color: #f379a7;
+  background-color: #000000;
 }
 
 /*--
@@ -3369,7 +3372,7 @@ blockquote p {
   -moz-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  padding-left: 15px;
+  padding: 25px;
 }
 
 .single-shipping .shipping-content .title {
@@ -3428,7 +3431,7 @@ blockquote p {
 }
 
 .single-product .product-image .sticker-new.soldout-title {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -3534,7 +3537,8 @@ blockquote p {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -3542,13 +3546,13 @@ blockquote p {
 }
 
 .single-product .product-content .product-name a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-product .product-content .price-box .current-price {
   font-weight: 500;
   font-size: 15px;
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-product .product-content .price-box .old-price {
@@ -3633,11 +3637,12 @@ blockquote p {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .single-product.product-list .product-content .product-name a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-product.product-list .product-content .price-box {
@@ -3647,7 +3652,7 @@ blockquote p {
 .single-product.product-list .product-content .price-box .current-price {
   font-weight: 500;
   font-size: 15px;
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-product.product-list .product-content .price-box .old-price {
@@ -3686,7 +3691,7 @@ blockquote p {
   font-size: 18px;
   display: inline-block;
   margin-bottom: 6px;
-  background: #f379a7;
+  background: #000000;
   height: 45px;
   line-height: 46px;
   border-radius: 50%;
@@ -3760,7 +3765,7 @@ blockquote p {
 
 .product-active .swiper-next:hover,
 .product-active .swiper-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .product-active .swiper-next {
@@ -3794,19 +3799,20 @@ blockquote p {
 
 .product-tab-menu .nav li a {
   font-size: 14px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   line-height: 24px;
   text-transform: uppercase;
   display: inline-block;
   border-bottom: 1px solid transparent;
-  color: #f379a7;
+  color: #000000;
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
 }
 
 .product-tab-menu .nav li a.active {
-  border-color: #f379a7;
+  border-color: #000000;
 }
 
 .product-items-tab:not(:first-child) {
@@ -3845,7 +3851,8 @@ blockquote p {
   font-size: 31px;
   margin-bottom: 20px;
   line-height: 39px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-weight: 400;
 }
 
@@ -4000,7 +4007,7 @@ blockquote p {
 
 .testimonial-active .swiper-next:hover,
 .testimonial-active .swiper-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .testimonial-active .swiper-next {
@@ -4046,7 +4053,8 @@ blockquote p {
   font-weight: 700;
   color: #222222;
   margin-bottom: 0;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .single-expert .expert-content p {
@@ -4103,7 +4111,7 @@ blockquote p {
 
 .single-blog .blog-gallery .blog-gallery-next:hover,
 .single-blog .blog-gallery .blog-gallery-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-blog .blog-gallery .blog-gallery-next {
@@ -4127,7 +4135,8 @@ blockquote p {
 
 .single-blog .blog-content .title a {
   font-size: 18px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   text-transform: capitalize;
   line-height: 21px;
   margin-bottom: 5px;
@@ -4140,7 +4149,7 @@ blockquote p {
 }
 
 .single-blog .blog-content .title a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-blog .blog-content .articles-date {
@@ -4154,7 +4163,7 @@ blockquote p {
 }
 
 .single-blog .blog-content .articles-date p span {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-blog .blog-content > p {
@@ -4230,7 +4239,7 @@ blockquote p {
 
 .blog-active .swiper-next:hover,
 .blog-active .swiper-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .blog-active .swiper-next {
@@ -4451,7 +4460,8 @@ blockquote p {
   max-width: 100%;
   padding: 8px 10px;
   height: 42px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-size: 14px;
   font-weight: 400;
   color: #222222;
@@ -4520,7 +4530,7 @@ blockquote p {
 }
 
 .shop-image .shop-single-preview-image .sticker-new.soldout-title {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -4541,7 +4551,7 @@ blockquote p {
 }
 
 .shop-image .shop-single-thumb-image .single-product-thumb a.active {
-  border-color: #f379a7;
+  border-color: #000000;
 }
 
 .shop-thumb-active .swiper-thumb-next,
@@ -4568,7 +4578,7 @@ blockquote p {
 
 .shop-thumb-active .swiper-thumb-next:hover,
 .shop-thumb-active .swiper-thumb-prev:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .shop-thumb-active .swiper-thumb-next {
@@ -4593,7 +4603,8 @@ blockquote p {
   font-weight: 400;
   color: #222222;
   line-height: 20px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 @media only screen and (max-width: 575px) {
@@ -4653,7 +4664,7 @@ blockquote p {
 .shop-single-content .thumb-price .current-price {
   font-weight: 500;
   font-size: 23px;
-  color: #f379a7;
+  color: #000000;
 }
 
 @media only screen and (max-width: 575px) {
@@ -4677,7 +4688,7 @@ blockquote p {
 }
 
 .shop-single-content .thumb-price .discount {
-  background: #f379a7;
+  background: #000000;
   color: #fff;
   padding: 3px 16px;
   margin-top: 4px;
@@ -4759,7 +4770,7 @@ blockquote p {
 }
 
 .shop-single-content .shop-single-size .size-list .size-radio input[type="radio"]:checked + label {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -4890,7 +4901,7 @@ blockquote p {
 }
 
 .shop-single-content .shop-single-material .material-list .material-radio input[type="radio"]:checked + label {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -4925,7 +4936,7 @@ blockquote p {
 }
 
 .shop-single-content .product-additional-information li button:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .shop-single-content .product-quantity {
@@ -5036,7 +5047,7 @@ blockquote p {
   height: 42px;
   line-height: 42px;
   border-radius: 50%;
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
   text-align: center;
   -webkit-transition: all 0.3s linear;
@@ -5077,7 +5088,7 @@ blockquote p {
 .shop-single-content .dynamic-checkout-button .checkout-checkbox input[type="checkbox"] + label span::before {
   position: absolute;
   content: '\f00c';
-  font-family: FontAwesome;
+  font-family:  'Montserrat', sans-serif;;
   font-size: 12px;
   opacity: 0;
   visibility: hidden;
@@ -5201,8 +5212,8 @@ blockquote p {
 }
 
 .shop-single-content .social-share .social li a:hover {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -5249,7 +5260,7 @@ blockquote p {
 }
 
 .shop-single-info .shop-info-tab .nav .nav-item .nav-link.active {
-  color: #f379a7;
+  color: #000000;
 }
 
 .shop-single-info .description {
@@ -5282,7 +5293,8 @@ blockquote p {
 .shop-single-info .reviews .review-title {
   font-size: 24px;
   font-weight: 400;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 @media only screen and (max-width: 575px) {
@@ -5303,7 +5315,8 @@ blockquote p {
 .reviews-items .single-review .name {
   font-size: 16px;
   font-weight: 400;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   color: #222222;
 }
 
@@ -5336,7 +5349,7 @@ blockquote p {
 }
 
 .reviews-items .single-review .rating-date .rating li.rating-on {
-  color: #f379a7;
+  color: #000000;
 }
 
 .reviews-items .single-review .rating-date .date {
@@ -5369,7 +5382,7 @@ blockquote p {
 
 .reviews-form .reviews-rating .rating li {
   font-size: 16px;
-  color: #f379a7;
+  color: #000000;
   margin: 0 2px;
   cursor: pointer;
 }
@@ -5396,7 +5409,8 @@ blockquote p {
   font-size: 24px;
   font-weight: 400;
   color: #222222;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 @media only screen and (max-width: 575px) {
@@ -5414,7 +5428,7 @@ blockquote p {
 }
 
 .login-register-content .forget a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .login-register-content .single-form .btn-primary:hover {
@@ -5423,8 +5437,8 @@ blockquote p {
 }
 
 .login-register-content .single-form .btn-dark:hover {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 /*--
@@ -5485,7 +5499,7 @@ blockquote p {
 }
 
 .cart-table .table tbody tr td.product a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .cart-table .table tbody tr td.product span {
@@ -5556,13 +5570,13 @@ blockquote p {
 }
 
 .cart-btn .btn:hover {
-  border-color: #f379a7;
-  background-color: #f379a7;
+  border-color: #000000;
+  background-color: #000000;
   color: #ffffff;
 }
 
 .cart-btn .btn.btn-primary {
-  border-color: #f379a7;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -5597,7 +5611,8 @@ blockquote p {
 
 .cart-title .title {
   font-weight: 500;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-size: 18px;
   color: #222222;
   position: relative;
@@ -5697,7 +5712,7 @@ blockquote p {
 }
 
 .checkout-info .info-header a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .checkout-info .info-header.error i {
@@ -5742,12 +5757,13 @@ blockquote p {
 }
 
 .checkout-info .card-body .forget a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .checkout-title .title {
   font-size: 20px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-weight: 500;
   color: #000000;
   position: relative;
@@ -5966,12 +5982,13 @@ blockquote p {
 }
 
 .compare-table .table tbody tr td .product-image-title .category:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .compare-table .table tbody tr td .product-image-title .title a {
   font-size: 16px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   color: #222222;
   font-weight: 500;
   margin-top: 15px;
@@ -6010,7 +6027,8 @@ blockquote p {
 /*----------------------------------------*/
 .empty-cart-content .empty-cart-title {
   color: #222222;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-size: 35px;
 }
 
@@ -6069,7 +6087,7 @@ blockquote p {
 }
 
 .my-account-menu .account-menu-list li a:hover, .my-account-menu .account-menu-list li a.active {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -6131,7 +6149,7 @@ blockquote p {
 }
 
 .my-account-dashboard .welcome-dashboard p a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .my-account-dashboard p {
@@ -6148,7 +6166,8 @@ blockquote p {
   font-size: 16px;
   color: #000000;
   font-weight: 500;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .my-account-address .account-address p {
@@ -6171,7 +6190,8 @@ blockquote p {
   font-size: 20px;
   font-weight: 500;
   color: #000000;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .my-account-details .account-details .single-form .btn {
@@ -6218,7 +6238,8 @@ blockquote p {
 
 .single-contact-info .title {
   font-size: 18px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   color: #222222;
   font-weight: 500;
 }
@@ -6244,8 +6265,8 @@ blockquote p {
 }
 
 .contact-form .single-form .btn:hover {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 /*--
@@ -6259,7 +6280,8 @@ blockquote p {
 .blog-single .title {
   font-size: 24px;
   font-weight: 500;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   margin-bottom: 15px;
   margin-top: 25px;
   text-transform: uppercase;
@@ -6276,7 +6298,7 @@ blockquote p {
 }
 
 .blog-single .articles-date p span {
-  color: #f379a7;
+  color: #000000;
 }
 
 .blog-single .dec-img-wrapper {
@@ -6360,8 +6382,8 @@ blockquote p {
 }
 
 .blog-dec-tags-social .blog-dec-tags .tags li:hover a {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -6400,7 +6422,7 @@ blockquote p {
 }
 
 .blog-dec-tags-social .blog-dec-social .social li:hover a {
-  color: #f379a7;
+  color: #000000;
 }
 
 .blog-next-previous {
@@ -6443,7 +6465,8 @@ blockquote p {
 .blog-comment .comment-title {
   text-transform: uppercase;
   font-size: 15px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   color: #222222;
   font-weight: 500;
 }
@@ -6501,7 +6524,8 @@ blockquote p {
 .single-commnet .comment-content .avater-name {
   font-size: 16px;
   font-weight: 500;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   color: #222222;
   margin-bottom: 0;
 }
@@ -6648,7 +6672,7 @@ blockquote p {
 .modal .modal-dialog .modal-content .modal-body .quick-view-content .thumb-price .current-price {
   font-weight: 500;
   font-size: 16px;
-  color: #f379a7;
+  color: #000000;
 }
 
 @media only screen and (max-width: 575px) {
@@ -6672,7 +6696,7 @@ blockquote p {
 }
 
 .modal .modal-dialog .modal-content .modal-body .quick-view-content .thumb-price .discount {
-  background: #f379a7;
+  background: #000000;
   color: #fff;
   padding: 2px 8px;
   margin-top: 4px;
@@ -6801,7 +6825,8 @@ blockquote p {
 
 .page-banner-content .title {
   font-size: 42px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   font-weight: normal;
   line-height: 50px;
 }
@@ -6839,7 +6864,8 @@ blockquote p {
 /*----------------------------------------*/
 .widget-title {
   font-size: 15px;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
   margin-bottom: 20px;
   padding-bottom: 10px;
   text-transform: uppercase;
@@ -6880,7 +6906,7 @@ blockquote p {
 }
 
 .sidebar-categories .categories-list li a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .sidebar-color {
@@ -6906,7 +6932,7 @@ blockquote p {
 }
 
 .sidebar-color .color-list li.active {
-  color: #f379a7;
+  color: #000000;
 }
 
 .sidebar-color .color-list li span {
@@ -6953,8 +6979,8 @@ blockquote p {
 }
 
 .sidebar-size .size-list li:hover a, .sidebar-size .size-list li.active a {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -7008,11 +7034,12 @@ blockquote p {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .single-mini-product .product-content .title a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .single-mini-product .product-content .rating {
@@ -7083,8 +7110,8 @@ blockquote p {
 }
 
 .sidebar-tags .tags-list li:hover a, .sidebar-tags .tags-list li.active a {
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   color: #ffffff;
 }
 
@@ -7160,11 +7187,12 @@ blockquote p {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .sidebar-post .post-items .single-post .post-content .post-title a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 /*--
@@ -7225,7 +7253,7 @@ blockquote p {
 }
 
 .footer-widget .widget-social ul li a:hover {
-  background-color: #f379a7;
+  background-color: #000000;
   color: #ffffff;
 }
 
@@ -7238,7 +7266,8 @@ blockquote p {
   font-weight: 500;
   position: relative;
   color: #ffffff;
-  font-family: 'Coiny', cursive;
+  font-family: 'Montserrat', sans-serif;
+font-optical-sizing: auto;
 }
 
 .footer-widget .footer-widget-menu ul li a {
@@ -7253,7 +7282,7 @@ blockquote p {
 }
 
 .footer-widget .footer-widget-menu ul li a:hover {
-  color: #f379a7;
+  color: #000000;
 }
 
 .copyright-section {
@@ -7278,7 +7307,7 @@ blockquote p {
 }
 
 .copyright-wrapper .copyright-content p a {
-  color: #f379a7;
+  color: #000000;
 }
 
 .copyright-wrapper .copyright-payment {
@@ -7306,7 +7335,7 @@ blockquote p {
   -o-transition: 0.4s;
   transition: 0.4s;
   color: #ffffff;
-  background-color: #f379a7;
+  background-color: #000000;
 }
 
 .back-to-top:hover {
@@ -7481,7 +7510,6 @@ blockquote p {
 
 .container__address-content {
   padding: 28px 30px 24px;
-  border-bottom: 1px solid #efefef;
 }
 
 .container__address-content-hd {
@@ -7489,7 +7517,7 @@ blockquote p {
   align-items: center;
   font-size: 1.8rem;
   margin-bottom: 20px;
-  color: #f379a7;
+  color: #000000;
 }
 
 .container__address-content-hd-icon {
@@ -7551,7 +7579,9 @@ h5,
 .logo .text,
 .flex-caption .nav-holder a,button
 {
-  font-family: 'Coiny', cursive;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+ 
 }
 
 .products-holder .product-item .add-button,
@@ -8138,7 +8168,7 @@ overflow: hidden;
 
   left: -10px;
   vertical-align: top;
-  font-family: fontawesome;
+  font-family:  'Montserrat', sans-serif;;
   color: #727272;
 }
 .section-copyright{
@@ -8316,7 +8346,7 @@ font-size: 13px;
 .close-btn:after{
 
 
-  font-family: fontawesome;
+  font-family:  'Montserrat', sans-serif;;
   content: "ï€";
   color:#D6D8CA;
   text-align: center;
@@ -8439,7 +8469,7 @@ padding-right: 15px;
 .accordion-widget .accordion-toggle:before{
   content: "ïƒ";
   font-size: 10px;
-  font-family: fontawesome;
+  font-family:  'Montserrat', sans-serif;;
   z-index: 10;
   left: 1px;
   top:-1px;
@@ -9668,7 +9698,7 @@ div.dataTables_wrapper div.dataTables_filter input {
   padding: 6px 12px;
   line-height: 1.42857143;
   text-decoration: none;
-  color: #f379a7;
+  color: #000000;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -9701,8 +9731,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 .pagination > .active > span:focus {
   z-index: 3;
   color: #fff;
-  background-color: #f379a7;
-  border-color: #f379a7;
+  background-color: #000000;
+  border-color: #000000;
   cursor: default;
 }
 .pagination > .disabled > span,
@@ -9867,10 +9897,22 @@ input[type=checkbox] {
   top: -16%;
   right: 33%;
   color: #fff;
-  background-color: #f379a7;
+  background-color: #000000;
   border-radius: 100%;
   width: 20px;
   height: 20px;
   line-height: 20px;
   text-align: center;
+}
+
+.paid_tag {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-30deg);
+  border: 5px solid #000000;
+  border-radius: 5px;
+  right: 20%;
+  top: 25%;
 }

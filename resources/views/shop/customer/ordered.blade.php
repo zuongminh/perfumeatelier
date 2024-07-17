@@ -102,11 +102,10 @@
                                             <td class="d-flex justify-content-center">
                                                 <a class="view-hover h3 mr-2" href="{{URL::to('/ordered-info/'.$bill->idBill)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết"><i class="fa fa-eye"></i></a>
                                                 @if($bill->Status == 0)
-                                                <a class="view-hover h3 ml-2" id="delete-bill-btn" data-toggle="modal" data-target="#modal-delete-bill" data-id="{{$bill->idBill}}"><i class="fa fa-trash"></i></a>
-                                                @elseif($bill->Status == 1)
-                                                <button class="view-hover h3" style=" border:none; background-color: transparent;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xác nhận hoàn thành"><i class="fa fa-check-circle"></i></button>
-                                                <input type="hidden" name="Status" value="2">
+                                                <a class="view-hover h3 ml-2 delete-bill-btn" data-toggle="modal" data-target="#modal-delete-bill" data-id="{{$bill->idBill}}"><i class="fa fa-trash"></i></a>                                
                                                 @endif
+                                                <!-- <button class="view-hover h3" style=" border:none; background-color: transparent;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xác nhận hoàn thành"><i class="fa fa-check-circle"></i></button>
+                                                <input type="hidden" name="Status" value="2"> -->
                                             </td>
                                             </form>
                                         </tr>
@@ -151,7 +150,7 @@
         $('body').tooltip({selector: '[data-toggle="tooltip"]'});
         APP_URL = '{{url('/')}}' ;
 
-        $("#delete-bill-btn").on("click", function() {
+        $(".delete-bill-btn").on("click", function() {
             var idBill = $(this).data("id");
             console.log(idBill);
             $(".content-delete").html("Bạn có muốn hủy đơn hàng #" +idBill+ " không?");

@@ -7,10 +7,10 @@
             <div class="col-lg-12">
                 <div class="d-flex flex-wrap flex-wrap align-items-center justify-content-between mb-4">
                     <div>
-                        <h4 class="mb-3">Danh Sách Bài Viết ( Tổng: {{$count_blog}} bài viết )</h4>
+                        <h4 class="mb-3">Danh Sách Tin Tức ( Tổng: {{$count_blog}} tin tức )</h4>
                         <p class="mb-0">Trang hiển thị danh sách nhân viên, cung cấp cho bạn thông tin về nhân viên và chức vụ của nhân viên, các chức năng và điều khiển. </p>
                     </div>
-                    <a href="{{URL::to('/add-blog')}}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm bài viết</a>
+                    <a href="{{URL::to('/add-blog')}}" class="btn btn-primary add-list"><i class="las la-plus mr-3"></i>Thêm tin tức</a>
                 </div>
             </div>
             <div class="col-lg-12">
@@ -18,11 +18,11 @@
                     <table class="data-tables table mb-0 tbl-server-info">
                         <thead class="bg-white text-uppercase">
                             <tr class="ligth ligth-data">
-                                <th>ID Bài Viết</th>
+                                <th>ID Tin tức</th>
                                 <th>Tiêu đề</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày cập nhật</th>
-                                <th>Ẩn Hiện</th>
+                                <th>Ẩn/Hiện</th>
                                 <th>Thao tác</th>
                             </tr>
                         </thead>
@@ -63,7 +63,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>Bạn có muốn xóa bài viết {{$blog->BlogTitle}} không?</p>
+                                            <p>Bạn có muốn xóa tin tức {{$blog->BlogTitle}} không?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-light" data-dismiss="modal">Trở về</button>

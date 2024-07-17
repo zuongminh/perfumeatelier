@@ -9,10 +9,10 @@
 <div class="page-banner" style="background-image: url(public/kidolshop/images/banner/banner-shop.png);">
     <div class="container">
         <div class="page-banner-content text-center">
-            <h2 class="title">Thanh toán</h2>
+            <h2 class="title">Checkout</h2>
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Thanh toán</li>
+                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
             </ol>
         </div>
     </div>
@@ -26,8 +26,8 @@
             <div class="container__address-css"></div>
             <div class="container__address-content">
                 <div class="container__address-content-hd justify-content-between">
-                    <div><i class="container__address-content-hd-icon fa fa-map-marker"></i>Địa Chỉ Nhận Hàng</div>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddressModal">+ Thêm Địa Chỉ</button>
+                    <div><i class="container__address-content-hd-icon fa fa-map-marker"></i>Shipping Address</div>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddressModal">+ Enter shipping address</button>
                 </div>
                 <ul class="shipping-list list-address">
 
@@ -39,11 +39,14 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="image">Hình Ảnh</th>
-                        <th class="product">Sản Phẩm</th>
-                        <th class="price">Giá</th>
-                        <th class="quantity" style="width:10%">Số Lượng</th>
-                        <th class="total">Tổng</th>
+        
+                        <th class="total">Total</th>
+                        <th class="image">Picture</th>
+                        <th class="product">Products</th>
+                        <th class="price">Price</th>
+                        <th class="quantity" style="width:10%">Quantity</th>
+                        <th class="total">Total</th>
+                        <th class="remove">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,36 +80,56 @@
             <div class="col-lg-6">
                 <div class="cart-coupon">
                     <div class="cart-title">
-                        <h4 class="title">Mã giảm giá</h4>
-                        <p>Nhập mã giảm giá của bạn nếu có.</p>
+                        <h4 class="title">Discount code</h4>
+                        
                     </div>
                     <div class="cart-form mt-25 d-flex">
                         <div class="single-form flex-fill mr-30">
-                            <input type="text" id="VoucherCode" placeholder="Nhập mã giảm giá (chỉ áp dụng 1 lần)">
+                            <input type="text" id="VoucherCode" placeholder="Discount code or gift card">
                         </div>
                         <div class="cart-form-btn d-flex">
-                            <button type="button" style="width:97px;" class="btn btn-primary pl-2 pr-2 check-voucher">Áp dụng</button>
+                            <button type="button" style="width:97px;" class="btn btn-primary pl-2 pr-2 check-voucher">Apply</button>
                         </div>
                     </div>
                     <div class="text-primary alert-voucher"></div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 container__address-content">
+                <div class="container__address-content-hd">
+                    <i class="container__address-content-hd-icon fa fa-money"></i>
+                    <div>Payment Method</div>
+                </div>
+                <ul class="shipping-list checkout-payment">
+                    <li class="cus-radio">
+                        <input type="radio" name="checkout" value="cash" id="cash" checked>
+                        <label for="cash">
+                            <span>Cash on delivery</span>
+                        </label>
+                    </li>
+                    <li class="cus-radio payment-radio">
+                        <input type="radio" name="checkout" value="vnpay" id="vnpay" >
+                        <label for="vnpay">
+                            <span>VNPay</span>
+                        </label>
+                    </li>
+                </ul>                   
+            </div>
+            <div class="col-lg-12">
                 <div class="cart-totals shop-single-content">
                     <div class="cart-title">
-                        <h4 class="title">Tổng giỏ hàng</h4>
+                        <h4 class="title">Cart Total</h4>
                     </div>
                     <div class="cart-total-table mt-25">
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Tổng tiền hàng</td>
+                                    <td>Subtotal</td>
                                     <td class="text-right">{{number_format($Total,0,',','.')}}đ</td>
                                 </tr>
                                 @if($Total < 1000000) @php $ship = '30000'; $total_bill = $Total + $ship; @endphp
-                                @else @php $ship = 'Miễn phí'; $total_bill = $Total; @endphp @endif
+                                @else @php $ship = 'Free'; $total_bill = $Total; @endphp @endif
                                 <tr class="shipping">
-                                    <td>Phí vận chuyển (Miễn phí vận chuyển cho đơn hàng trên 1.000.000đ)</td>
+                                    <td>Shipping</td>
                                     <td class="text-right">
                                             @if($ship > 0) {{number_format($ship,0,',','.')}}đ
                                             @else {{$ship}} @endif
@@ -114,7 +137,7 @@
                                 </tr>
 
                                 <tr>
-                                    <td width="70%">Thành tiền</td>
+                                    <td width="70%">Total</td>
                                     <td class="text-right totalBill">{{number_format($total_bill,0,',','.')}}đ</td>
                                 </tr>
 
@@ -125,39 +148,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- <div class="container__address-content">
-                        <div class="container__address-content-hd">
-                            <i class="container__address-content-hd-icon fa fa-money"></i>
-                            <div>Phương thức thanh toán</div>
-                        </div>
-                        <ul class="shipping-list checkout-payment">
-                            <li class="cus-radio">
-                                <input type="radio" name="checkout" value="cash" onclick="removeDiv()" id="cash" checked>
-                                <label for="cash">
-                                    <span>Thanh toán khi nhận hàng</span>
-                                </label>
-                            </li>
-                            <li class="cus-radio payment-radio">
-                                <input type="radio" name="checkout" onclick="showMomoModal()" value="momo" id="momo" >
-                                <label for="momo">
-                                    <span>Momo</span>
-                                </label>
-                            </li>
-                            <li class="cus-radio payment-radio">
-                                <input type="radio" name="checkout" onclick="showZaloModal()" value="zalo" id="zalo" >
-                                <label for="zalo">
-                                    <span>Zalo Pay</span>
-                                </label>
-                            </li>
-                        </ul>                   
-                    </div> -->
                     <div class="dynamic-checkout-button disabled ">
                         <div class="checkout-checkbox">
                             <input type="checkbox" id="disabled">
-                            <label for="disabled"><span></span> Tôi đồng ý với các điều khoản và điều kiện </label>
+                            <label for="disabled"><span></span> I agree to the Terms and Conditions</label>
                         </div>    
                         <div class="cart-total-btn checkout-btn">
-                            <button type="submit" class="btn btn-primary btn-block btnorder" style="max-width:100%;">Đặt hàng</button>
+                            <button type="submit" name="redirect" class="btn btn-primary btn-block btnorder" style="max-width:100%;">Order</button>
                         </div>
                     </div>
                 </div>
@@ -175,22 +172,22 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Thêm Địa Chỉ</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add Address</Address></h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="CustomerName" class="col-form-label">Họ và tên:</label>
+                        <label for="CustomerName" class="col-form-label">Name:</label>
                         <input type="text" class="form-control" name="CustomerName" id="CustomerName">
                         <span class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="PhoneNumber" class="col-form-label">Số điện thoại:</label>
+                        <label for="PhoneNumber" class="col-form-label">Phone:</label>
                         <input type="text" class="form-control" name="PhoneNumber" id="PhoneNumber">
                         <span class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <label for="Address" class="col-form-label">Địa chỉ:</label>
+                        <label for="Address" class="col-form-label">Address:</label>
                         <textarea class="form-control" name="Address" id="Address"></textarea>
                         <span class="text-danger"></span>
                     </div>

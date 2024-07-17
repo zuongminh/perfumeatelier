@@ -10,5 +10,5 @@ class Viewer extends Model
     public $timestamp = false;
     protected $fillable = ['idCustomer','idProduct','created_at','updated_at'];
     protected $primaryKey = 'idView';
-    protected $table = 'Viewer';
+    protected $table = 'viewer';
 }

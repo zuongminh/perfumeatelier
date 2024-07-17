@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="header-title">
-                            <h4 class="card-title">Thêm bài viết</h4>
+                            <h4 class="card-title">Thêm tin tức</h4>
                         </div>
                     </div>
                     <?php
@@ -31,14 +31,14 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tiêu đề *</label>
-                                        <input type="text" name="BlogTitle" class="form-control slug" onkeyup="ChangeToSlug()" placeholder="Nhập tiêu đề bài viết" required>
+                                        <input type="text" name="BlogTitle" class="form-control slug" onkeyup="ChangeToSlug()" placeholder="Nhập tiêu đề tin tức" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <input type="hidden" name="BlogSlug" class="form-control" id="convert_slug">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Ảnh bài viết *</label>
+                                        <label>Ảnh tin tức *</label>
                                         <input type="file" name="BlogImage" id="images" onchange="loadPreview(this)" class="form-control image-file" required>
                                         <div class="help-block with-errors"></div>
                                         <div class="text-danger alert-img"></div>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" class="btn btn-primary mr-2" id="btn-submit" value="Thêm bài viết">
+                            <input type="submit" class="btn btn-primary mr-2" id="btn-submit" value="Thêm tin tức">
                             <a href="{{URL::to('/manage-blog')}}" class="btn btn-light mr-2">Trở Về</a>
                         </form>
                     </div>

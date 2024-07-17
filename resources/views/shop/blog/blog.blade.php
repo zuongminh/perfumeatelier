@@ -5,10 +5,10 @@
 <div class="page-banner" style="background-image: url(public/kidolshop/images/banner/banner_blog.png);">
     <div class="container">
         <div class="page-banner-content text-center">
-            <h2 class="title">Tin Tức</h2>
+            <h2 class="title">Blogs</h2>
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tin tức</li>
+                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Menu</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Blogs</li>
             </ol>
         </div>
     </div>
@@ -33,7 +33,7 @@
                         <div class="four-line mb-4">{!!$blog->BlogDesc!!}</div>
 
                         <div class="blog-footer">
-                            <a class="more" href="{{URL::to('/blog/'.$blog->BlogSlug)}}">Tìm hiểu thêm</a>
+                            <a class="more" href="{{URL::to('/blog/'.$blog->BlogSlug)}}">More</a>
                             <!-- <p class="comment-count"><i class="icon-message-circle"></i> 0</p> -->
                         </div>
                     </div>

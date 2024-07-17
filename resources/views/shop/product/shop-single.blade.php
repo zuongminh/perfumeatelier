@@ -439,7 +439,7 @@
 <script>
     $(document).ready(function(){  
         var idCustomer = '<?php echo Session::get('idCustomer'); ?>';
-        var $Quantity = $('.qty-of-attr').val();
+        var $Quantity = parseInt($('.qty-of-attr').val());
         $("input:radio[name=material]:first").attr('checked', true);
         $('#idProAttr').val($("input:radio[name=material]:first").val());
 

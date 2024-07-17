@@ -35,16 +35,15 @@
 
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{asset('public/kidolshop/css/style.css')}}">
-    
+
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
     </style>
 
     <!-- Modernizer JS -->
     <script src="{{asset('public/kidolshop/js/vendor/modernizr-3.6.0.min.js')}}"></script>
     <!-- jQuery JS -->
-    <script src="{{asset('public/kidolshop/js/vendor/jquery-3.3.1.min.js')}}" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" 
-        crossorigin="anonymous">
+    <script src="{{asset('public/kidolshop/js/vendor/jquery-3.3.1.min.js')}}" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous">
     </script>
     <script src="{{asset('public/kidolshop/js/jquery.preloadinator.min.js')}}"></script>
 
@@ -57,19 +56,8 @@
 
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0" class="preloader-deactive">
     <div class="main-wrapper">
-        <!--Top Notification Start-->
-        <div class="top-notification-bar text-center">
-            <div class="container">
-                <div class="notification-entry">
-                    <p>Nhập: SALE10 giảm 10% cho mọi đơn hàng. <a href="{{URL::to('/store')}}">Mua ngay!</a></p>
-                </div>
-            </div>
-            <div class="notification-close">
-                <button class="notification-close-btn"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <!--Top Notification End-->
-
+        
+        
         <div class="preloader js-preloader flex-center">
             <div class="dots">
                 <div class="dot"></div>
@@ -79,10 +67,11 @@
         </div>
 
         <!--Header Section Start-->
-        <?php 
-            use App\Http\Controllers\CartController;
-            use App\Http\Controllers\ProductController;
-            use Illuminate\Support\Facades\Session;
+        <?php
+
+        use App\Http\Controllers\CartController;
+        use App\Http\Controllers\ProductController;
+        use Illuminate\Support\Facades\Session;
         ?>
         <input id="quick-view-token" name="_token" type="hidden" value="{{csrf_token()}}">
         <div class="header-section d-none d-lg-block">
@@ -98,13 +87,12 @@
                             <div class="site-main-nav">
                                 <nav class="site-nav">
                                     <ul>
-                                        <li><a href="{{URL::to('/home')}}">Trang chủ</a></li>
+                                        <li><a href="{{URL::to('/home')}}">Home</a></li>
                                         <li>
-                                            <a href="{{URL::to('/store')}}">Cửa hàng <span class="new">Mới</span></a>
-
+                                            <a href="{{URL::to('/store')}}">Discover</a>
                                             <ul class="mega-sub-menu">
                                                 <li class="mega-dropdown">
-                                                    <a class="mega-title" href="{{URL::to('/store')}}">Danh mục</a>
+                                                    <a class="mega-title" href="{{URL::to('/store')}}">Categories</a>
 
                                                     <ul class="mega-item">
                                                         @foreach($list_category as $key => $category)
@@ -113,7 +101,7 @@
                                                     </ul>
                                                 </li>
                                                 <li class="mega-dropdown">
-                                                    <a class="mega-title" href="{{URL::to('/store')}}">Thương hiệu</a>
+                                                    <a class="mega-title" href="{{URL::to('/store')}}">Brands</a>
 
                                                     <ul class="mega-item">
                                                         @foreach($list_brand as $key => $brand)
@@ -122,25 +110,25 @@
                                                     </ul>
                                                 </li>
                                                 <li class="mega-dropdown">
-                                                    <a class="mega-title" href="{{URL::to('/store')}}">Danh Mục Khác</a>
+                                                    <a class="mega-title" href="{{URL::to('/store')}}">Others</a>
 
                                                     <ul class="mega-item">
-                                                        <li><a href="{{URL::to('/store?show=all&sort_by=new')}}">Sản phẩm mới</a></li>
-                                                        <li><a href="{{URL::to('/store?show=all&sort_by=bestsellers')}}">Sản phẩm bán chạy</a></li>
-                                                        <li><a href="{{URL::to('/store?show=all&sort_by=featured')}}">Sản phẩm nổi bật</a></li>
-                                                        <li><a href="{{URL::to('/store?show=all&sort_by=sale')}}">Sản phẩm đang SALE</a></li>
+                                                        <li><a href="{{URL::to('/store?show=all&sort_by=new')}}">New Products</a></li>
+                                                        <li><a href="{{URL::to('/store?show=all&sort_by=bestsellers')}}">Bess-sellers</a></li>
+                                                        <li><a href="{{URL::to('/store?show=all&sort_by=featured')}}"></a></li>
+                                                        <li><a href="{{URL::to('/store?show=all&sort_by=sale')}}">Sale</a></li>
                                                     </ul>
                                                 </li>
                                                 <li class="mega-dropdown">
                                                     <a class="menu-banner" href="#">
-                                                        <img src="{{asset('public/kidolshop/images/banner-navbar.jpg')}}" alt="">
+                                                        <img src="{{asset('public/kidolshop/images/banner-navbar.png')}}" alt="">
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="{{URL::to('/blog')}}">Tin tức</a></li>
-                                        <li><a href="{{URL::to('/about-us')}}">Về chúng tôi</a></li>
-                                        <li><a href="{{URL::to('/contact')}}">Liên hệ</a></li>
+                                        <li><a href="{{URL::to('/blog')}}">Blogs</a></li>
+                                        <li><a href="{{URL::to('/about-us')}}">About Us</a></li>
+                                        <li><a href="{{URL::to('/contact')}}">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -149,7 +137,7 @@
                             <div class="header-meta-info" style="position:relative;">
                                 <div class="header-search">
                                     <form type="GET" action="{{URL::to('/search')}}">
-                                        <input type="text" name="keyword" id="search-input" placeholder="Tìm kiếm sản phẩm " autocomplete="off">
+                                        <input type="text" name="keyword" id="search-input" placeholder="Search..." autocomplete="off">
                                         <button class="search-btn"><i class="icon-search"></i></button>
                                     </form>
                                 </div>
@@ -159,9 +147,9 @@
                                 <div class="header-account">
                                     <div class="header-account-list dropdown top-link">
                                         @if(Session::get('idCustomer'))
-                                            @if(Session::get('AvatarCus') != '')
-                                            <a href="#" role="button" data-toggle="dropdown"><img style="border-radius:50%;" width="70px" height="24px" src="{{asset('public/storage/kidoldash/images/customer/'.Session::get('AvatarCus'))}}" alt=""></a>
-                                            @else <a href="#" role="button" data-toggle="dropdown"><i class="icon-users"></i></a> @endif
+                                        @if(Session::get('AvatarCus') != '')
+                                        <a href="#" role="button" data-toggle="dropdown"><img style="border-radius:50%;" width="70px" height="24px" src="{{asset('public/storage/kidoldash/images/customer/'.Session::get('AvatarCus'))}}" alt=""></a>
+                                        @else <a href="#" role="button" data-toggle="dropdown"><i class="icon-users"></i></a> @endif
                                         <ul class="dropdown-menu">
                                             <li><a href="{{URL::to('/account')}}">Tài khoản của tôi</a></li>
                                             <li><a href="{{URL::to('/wishlist')}}">Sản phẩm yêu thích</a></li>
@@ -179,67 +167,67 @@
                                         @endif
                                     </div>
                                     <div class="header-account-list dropdown mini-cart">
-                                        <?php 
-                                            $get_cart_header = CartController::get_cart_header();
-                                            $sum_cart = $get_cart_header['sum_cart'];
-                                            $carts = $get_cart_header['get_cart_header']; 
-                                            $Total = 0; 
+                                        <?php
+                                        $get_cart_header = CartController::get_cart_header();
+                                        $sum_cart = $get_cart_header['sum_cart'];
+                                        $carts = $get_cart_header['get_cart_header'];
+                                        $Total = 0;
                                         ?>
                                         @if($sum_cart > 0)
-                                            <a href="#" role="button" data-toggle="dropdown">
-                                                <i class="icon-shopping-bag"></i>
-                                                <span class="item-count ">{{$sum_cart}}</span>
-                                            </a>
-                                            <ul class="dropdown-menu ">
-                                                <li class="product-cart">
-                                                    @foreach($carts as $key => $cart)
-                                                        @php
-                                                            $Total += ($cart->PriceNew * $cart->QuantityBuy);
-                                                            $get_time_sale = ProductController::get_sale_pd($cart->idProduct);
-                                                            $SalePrice = 0;
-                                                            if($get_time_sale) $SalePrice = $cart->Price - ($cart->Price/100) * $get_time_sale->Percent;
-                                                        @endphp
-                                                        <div class="single-cart-box">
-                                                            <div class="cart-img">
-                                                                <?php $image = json_decode($cart->ImageName)[0]; ?>
-                                                                <a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}"><img src="{{asset('public/storage/kidoldash/images/product/'.$image)}}" alt=""></a>
-                                                                <span class="pro-quantity">{{$cart->QuantityBuy}}</span>
-                                                            </div>
-                                                            <div class="cart-content">
-                                                                <h6 class="title"><a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}">{{$cart->ProductName}}</a></h6>
-                                                                <span class="title" style="font-size:13px;">{{$cart->AttributeProduct}}</span>
-                                                                <div class="cart-price d-flex">
-                                                                    @if($SalePrice != '0')
-                                                                        <span class="sale-price">{{number_format(round($SalePrice,-3),0,',','.')}}đ</span>
-                                                                        <span class="regular-price">{{number_format($cart->Price,0,',','.')}}đ</span>
-                                                                    @else
-                                                                        <span class="sale-price">{{number_format($cart->Price,0,',','.')}}đ</span>
-                                                                    @endif
-                                                                </div>
-                                                            </div>
-                                                            <a class="del-icon delete-pd-cart" data-id="{{$cart->idCart}}" data-token="{{csrf_token()}}"><i class="fa fa-trash"></i></a>
+                                        <a href="#" role="button" data-toggle="dropdown">
+                                            <i class="icon-shopping-bag"></i>
+                                            <span class="item-count ">{{$sum_cart}}</span>
+                                        </a>
+                                        <ul class="dropdown-menu ">
+                                            <li class="product-cart">
+                                                @foreach($carts as $key => $cart)
+                                                @php
+                                                $Total += ($cart->PriceNew * $cart->QuantityBuy);
+                                                $get_time_sale = ProductController::get_sale_pd($cart->idProduct);
+                                                $SalePrice = 0;
+                                                if($get_time_sale) $SalePrice = $cart->Price - ($cart->Price/100) * $get_time_sale->Percent;
+                                                @endphp
+                                                <div class="single-cart-box">
+                                                    <div class="cart-img">
+                                                        <?php $image = json_decode($cart->ImageName)[0]; ?>
+                                                        <a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}"><img src="{{asset('public/storage/kidoldash/images/product/'.$image)}}" alt=""></a>
+                                                        <span class="pro-quantity">{{$cart->QuantityBuy}}</span>
+                                                    </div>
+                                                    <div class="cart-content">
+                                                        <h6 class="title"><a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}">{{$cart->ProductName}}</a></h6>
+                                                        <span class="title" style="font-size:13px;">{{$cart->AttributeProduct}}</span>
+                                                        <div class="cart-price d-flex">
+                                                            @if($SalePrice != '0')
+                                                            <span class="sale-price">{{number_format(round($SalePrice,-3),0,',','.')}}đ</span>
+                                                            <span class="regular-price">{{number_format($cart->Price,0,',','.')}}đ</span>
+                                                            @else
+                                                            <span class="sale-price">{{number_format($cart->Price,0,',','.')}}đ</span>
+                                                            @endif
                                                         </div>
-                                                    @endforeach
-                                                </li>
-                                                <li class="product-total">
-                                                    <ul class="cart-total">
-                                                        <li> Tổng : <span>{{number_format($Total,0,',','.')}}đ</span></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="product-btn">
-                                                    <a href="{{URL::to('/cart')}}" class="btn btn-dark btn-block">Xem giỏ hàng</a>
-                                                </li>
-                                            </ul>
+                                                    </div>
+                                                    <a class="del-icon delete-pd-cart" data-id="{{$cart->idCart}}" data-token="{{csrf_token()}}"><i class="fa fa-trash"></i></a>
+                                                </div>
+                                                @endforeach
+                                            </li>
+                                            <li class="product-total">
+                                                <ul class="cart-total">
+                                                    <li> Tổng : <span>{{number_format($Total,0,',','.')}}đ</span></li>
+                                                </ul>
+                                            </li>
+                                            <li class="product-btn">
+                                                <a href="{{URL::to('/cart')}}" class="btn btn-dark btn-block">Xem giỏ hàng</a>
+                                            </li>
+                                        </ul>
                                         @else
-                                            <a href="#" role="button" data-toggle="dropdown">
-                                                <i class="icon-shopping-bag"></i>
-                                            </a>
-                                            <ul class="dropdown-menu" style="height:250px; width:250px;">
-                                                <li style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                                                    <img src="{{asset('public/kidolshop/images/no_cart.png')}}" alt="" style="width: 80%;" class="product-image">
-                                                    <span class="mt-10 d-block text-align-center">Giỏ hàng trống</span>
-                                                </li>
-                                            </ul>
+                                        <a href="#" role="button" data-toggle="dropdown">
+                                            <i class="icon-shopping-bag"></i>
+                                        </a>
+                                        <ul class="dropdown-menu" style="height:250px; width:250px;">
+                                            <li style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                                                <img src="{{asset('public/kidolshop/images/no_cart.png')}}" alt="" style="width: 80%;" class="product-image">
+                                                <span class="mt-10 d-block text-align-center">Giỏ hàng trống</span>
+                                            </li>
+                                        </ul>
                                         @endif
                                     </div>
                                 </div>
@@ -266,87 +254,87 @@
                             <div class="header-account">
                                 <div class="header-account-list dropdown top-link">
                                     @if(Session::get('idCustomer'))
-                                        @if(Session::get('AvatarCus') != '')
-                                        <a href="#" role="button" data-toggle="dropdown" style="top:-3px;"><img style="border-radius:50%;" width="24px" height="24px" src="{{asset('public/storage/kidoldash/images/customer/'.Session::get('AvatarCus'))}}" alt=""></a>
-                                        @else <a href="#" role="button" data-toggle="dropdown"><i class="icon-users"></i></a> @endif
+                                    @if(Session::get('AvatarCus') != '')
+                                    <a href="#" role="button" data-toggle="dropdown" style="top:-3px;"><img style="border-radius:50%;" width="24px" height="24px" src="{{asset('public/storage/kidoldash/images/customer/'.Session::get('AvatarCus'))}}" alt=""></a>
+                                    @else <a href="#" role="button" data-toggle="dropdown"><i class="icon-users"></i></a> @endif
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{URL::to('/account')}}">Tài khoản của tôi</a></li>
-                                        <li><a href="{{URL::to('/wishlist')}}">Sản phẩm yêu thích</a></li>
-                                        <li><a href="{{URL::to('/ordered')}}">Đơn mua</a></li>
-                                        <li><a href="{{URL::to('/logout')}}">Đăng xuất</a></li>
+                                        <li><a href="{{URL::to('/account')}}">My Account</a></li>
+                                        <li><a href="{{URL::to('/wishlist')}}">WishList</a></li>
+                                        <li><a href="{{URL::to('/ordered')}}">My Purchases</a></li>
+                                        <li><a href="{{URL::to('/logout')}}">Logout</a></li>
                                     </ul>
                                     <input type="hidden" id="idCustomer" value="{{Session::get('idCustomer')}}">
                                     @else
                                     <a href="#" role="button" data-toggle="dropdown"><i class="icon-users"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{URL::to('/register')}}">Đăng ký</a></li>
-                                        <li><a href="{{URL::to('/login')}}">Đăng nhập</a></li>
+                                        <li><a href="{{URL::to('/register')}}">Sign in</a></li>
+                                        <li><a href="{{URL::to('/login')}}">Login</a></li>
                                     </ul>
                                     <input type="hidden" id="idCustomer" value="">
                                     @endif
                                 </div>
                                 <div class="header-account-list dropdown mini-cart">
-                                    <?php 
-                                        $get_cart_header = CartController::get_cart_header();
-                                        $sum_cart = $get_cart_header['sum_cart'];
-                                        $carts = $get_cart_header['get_cart_header']; 
-                                        $Total = 0; 
+                                    <?php
+                                    $get_cart_header = CartController::get_cart_header();
+                                    $sum_cart = $get_cart_header['sum_cart'];
+                                    $carts = $get_cart_header['get_cart_header'];
+                                    $Total = 0;
                                     ?>
                                     @if($sum_cart > 0)
-                                        <a href="#" role="button" data-toggle="dropdown">
-                                            <i class="icon-shopping-bag"></i>
-                                            <span class="item-count ">{{$sum_cart}}</span>
-                                        </a>
-                                        <ul class="dropdown-menu ">
-                                            <li class="product-cart">
-                                                @foreach($carts as $key => $cart)
-                                                    @php
-                                                        $Total += ($cart->PriceNew * $cart->QuantityBuy);
-                                                        $get_time_sale = ProductController::get_sale_pd($cart->idProduct);
-                                                        $SalePrice = 0;
-                                                        if($get_time_sale) $SalePrice = $cart->Price - ($cart->Price/100) * $get_time_sale->Percent;
-                                                    @endphp
-                                                    <div class="single-cart-box">
-                                                        <div class="cart-img">
-                                                            <?php $image = json_decode($cart->ImageName)[0]; ?>
-                                                            <a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}"><img src="{{asset('public/storage/kidoldash/images/product/'.$image)}}" alt=""></a>
-                                                            <span class="pro-quantity">{{$cart->QuantityBuy}}</span>
-                                                        </div>
-                                                        <div class="cart-content">
-                                                            <h6 class="title"><a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}">{{$cart->ProductName}}</a></h6>
-                                                            <span class="title" style="font-size:13px;">{{$cart->AttributeProduct}}</span>
-                                                            <div class="cart-price d-flex">
-                                                                @if($SalePrice != '0')
-                                                                    <span class="sale-price">{{number_format(round($SalePrice,-3),0,',','.')}}đ</span>
-                                                                    <span class="regular-price">{{number_format($cart->Price,0,',','.')}}đ</span>
-                                                                @else
-                                                                    <span class="sale-price">{{number_format($cart->Price,0,',','.')}}đ</span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                        <a class="del-icon delete-pd-cart" data-id="{{$cart->idCart}}" data-token="{{csrf_token()}}"><i class="fa fa-trash"></i></a>
+                                    <a href="#" role="button" data-toggle="dropdown">
+                                        <i class="icon-shopping-bag"></i>
+                                        <span class="item-count ">{{$sum_cart}}</span>
+                                    </a>
+                                    <ul class="dropdown-menu ">
+                                        <li class="product-cart">
+                                            @foreach($carts as $key => $cart)
+                                            @php
+                                            $Total += ($cart->PriceNew * $cart->QuantityBuy);
+                                            $get_time_sale = ProductController::get_sale_pd($cart->idProduct);
+                                            $SalePrice = 0;
+                                            if($get_time_sale) $SalePrice = $cart->Price - ($cart->Price/100) * $get_time_sale->Percent;
+                                            @endphp
+                                            <div class="single-cart-box">
+                                                <div class="cart-img">
+                                                    <?php $image = json_decode($cart->ImageName)[0]; ?>
+                                                    <a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}"><img src="{{asset('public/storage/kidoldash/images/product/'.$image)}}" alt=""></a>
+                                                    <span class="pro-quantity">{{$cart->QuantityBuy}}</span>
+                                                </div>
+                                                <div class="cart-content">
+                                                    <h6 class="title"><a href="{{URL::to('shop-single/'.$cart->ProductSlug)}}">{{$cart->ProductName}}</a></h6>
+                                                    <span class="title" style="font-size:13px;">{{$cart->AttributeProduct}}</span>
+                                                    <div class="cart-price d-flex">
+                                                        @if($SalePrice != '0')
+                                                        <span class="sale-price">{{number_format(round($SalePrice,-3),0,',','.')}}đ</span>
+                                                        <span class="regular-price">{{number_format($cart->Price,0,',','.')}}đ</span>
+                                                        @else
+                                                        <span class="sale-price">{{number_format($cart->Price,0,',','.')}}đ</span>
+                                                        @endif
                                                     </div>
-                                                @endforeach
-                                            </li>
-                                            <li class="product-total">
-                                                <ul class="cart-total">
-                                                    <li> Tổng : <span>{{number_format($Total,0,',','.')}}đ</span></li>
-                                                </ul>
-                                            </li>
-                                            <li class="product-btn">
-                                                <a href="{{URL::to('/cart')}}" class="btn btn-dark btn-block">Xem giỏ hàng</a>
-                                            </li>
-                                        </ul>
+                                                </div>
+                                                <a class="del-icon delete-pd-cart" data-id="{{$cart->idCart}}" data-token="{{csrf_token()}}"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                            @endforeach
+                                        </li>
+                                        <li class="product-total">
+                                            <ul class="cart-total">
+                                                <li> Tổng : <span>{{number_format($Total,0,',','.')}}đ</span></li>
+                                            </ul>
+                                        </li>
+                                        <li class="product-btn">
+                                            <a href="{{URL::to('/cart')}}" class="btn btn-dark btn-block">Xem giỏ hàng</a>
+                                        </li>
+                                    </ul>
                                     @else
-                                        <a href="#" role="button" data-toggle="dropdown">
-                                            <i class="icon-shopping-bag"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" style="height:250px; width:250px;">
-                                            <li style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-                                                <img src="{{asset('public/kidolshop/images/no_cart.png')}}" alt="" style="width: 80%;" class="product-image">
-                                                <span class="mt-10 d-block text-align-center">Giỏ hàng trống</span>
-                                            </li>
-                                        </ul>
+                                    <a href="#" role="button" data-toggle="dropdown">
+                                        <i class="icon-shopping-bag"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" style="height:250px; width:250px;">
+                                        <li style="height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                                            <img src="{{asset('public/kidolshop/images/no_cart.png')}}" alt="" style="width: 80%;" class="product-image">
+                                            <span class="mt-10 d-block text-align-center">Giỏ hàng trống</span>
+                                        </li>
+                                    </ul>
                                     @endif
                                 </div>
                                 <div class="header-account-list mobile-menu-trigger">
@@ -384,8 +372,8 @@
             <div class="site-main-nav">
                 <nav class="site-nav">
                     <ul class="navbar-mobile-wrapper">
-                        <li><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                        <li><a href="{{URL::to('/store')}}">Cửa hàng</a></li>
+                        <li><a href="{{URL::to('/home')}}">Home</a></li>
+                        <li><a href="{{URL::to('/store')}}">Store</a></li>
                         <li>
                             <a href="#">Sản phẩm <span class="new">Mới</span></a>
 
@@ -462,7 +450,7 @@
                         <!--Footer Widget Start-->
                         <div class="col-lg-4 col-md-6">
                             <div class="footer-widget">
-                                <a class="footer-logo" href="#"><img src="{{asset('public/kidolshop/images/logo/logo.png')}}" alt=""></a>
+                                <a class="footer-logo" href="#"><img src="{{asset('public/kidolshop/images/logo/logof.png')}}" alt=""></a>
                                 <div class="footer-widget-text">
                                     <p>A perfect blend of creativity, energy, communication, happiness and love. Let us arrange a smile for you. </p>
                                 </div>
@@ -478,7 +466,7 @@
                             <!--Footer Widget End-->
                         </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="col-lg-2f col-md-4 col-sm-6">
                             <div class="footer-widget">
                                 <h4 class="footer-widget-title">Information</h4>
 
@@ -494,7 +482,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="col-lg-2f col-md-4 col-sm-6">
                             <div class="footer-widget">
                                 <h4 class="footer-widget-title">My Account</h4>
 
@@ -510,7 +498,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="col-lg-2f col-md-4 col-sm-6">
                             <div class="footer-widget">
                                 <h4 class="footer-widget-title">Help</h4>
 
@@ -526,7 +514,7 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-2 col-md-4 col-sm-6">
+                        <div class="col-lg-2f col-md-4 col-sm-6">
                             <div class="footer-widget">
                                 <h4 class="footer-widget-title">Customer Service</h4>
 
@@ -555,7 +543,7 @@
 
                     <!--Right Start-->
                     <div class="copyright-content">
-                        <p>Copyright 2020 &copy; <a href="https://hasthemes.com/">HasThemes</a> . All Rights Reserved</p>
+                        <p>Copyright 2024 &copy; <a href="https://hasthemes.com/">HasThemes</a> . All Rights Reserved</p>
                     </div>
                     <!--Right End-->
 
@@ -631,7 +619,7 @@
         <!--Quick View Tags End-->
 
         <!-- Modal Warning Compare -->
-        <div class="modal fade bd-example-modal-sm" id="WarningModal" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal fade bd-example-modal-sm" id="WarningModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -650,7 +638,7 @@
         <!-- Modal Warning Compare -->
 
         <!-- Modal Add To WishList -->
-        <div class="modal fade bd-example-modal-sm modal-AddToWishList" tabindex="-1" role="dialog"  aria-hidden="true">
+        <div class="modal fade bd-example-modal-sm modal-AddToWishList" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -702,8 +690,8 @@
                 </div>
             </div>
         </div> -->
-        <div class="modal fade bd-example-modal-sm modal-Compare" id="modal-Compare" tabindex="-1" role="dialog"  aria-hidden="true">
-        
+        <div class="modal fade bd-example-modal-sm modal-Compare" id="modal-Compare" tabindex="-1" role="dialog" aria-hidden="true">
+
         </div>
         <!-- Modal Compare -->
     </div>
@@ -748,27 +736,28 @@
     </div>
 
     <script>
-      var chatbox = document.getElementById('fb-customer-chat');
-      chatbox.setAttribute("page_id", "102364102626836");
-      chatbox.setAttribute("attribution", "biz_inbox");
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "102364102626836");
+        chatbox.setAttribute("attribution", "biz_inbox");
     </script>
 
     <!-- Your SDK code -->
     <script>
-      window.fbAsyncInit = function() {
-        FB.init({
-          xfbml            : true,
-          version          : 'v15.0'
-        });
-      };
+        window.fbAsyncInit = function() {
+            FB.init({
+                xfbml: true,
+                version: 'v15.0'
+            });
+        };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <!-- Modal quick view JS -->
@@ -784,62 +773,71 @@
             animation: 'fadeOut',
             animationDuration: 400
         });
-        
-        $(document).ready(function(){  
-            APP_URL = '{{url('/')}}' ;
+
+        $(document).ready(function() {
+            APP_URL = '{{url(' / ')}}';
 
             // Quick view sản phẩm
-            $('.quick-view-pd').on('click',function(){
+            $('.quick-view-pd').on('click', function() {
                 var idProduct = $(this).data('id');
                 var _token = $('input[name="_token"]').val();
 
                 $.ajax({
                     url: '{{url("/quick-view-pd")}}',
                     method: 'POST',
-                    data: {idProduct:idProduct, _token:_token},
-                    success:function(data){
+                    data: {
+                        idProduct: idProduct,
+                        _token: _token
+                    },
+                    success: function(data) {
                         $('.main-wrapper').append(data);
-                        $('#modal-pd-'+idProduct).modal('show');
+                        $('#modal-pd-' + idProduct).modal('show');
                     }
                 });
             });
 
             // Add to WishList
-            $('.add-to-wishlist').on('click',function(){
+            $('.add-to-wishlist').on('click', function() {
                 var idProduct = $(this).data('id');
                 var _token = $('input[name="_token"]').val();
-                
-                if($('#idCustomer').val() == ""){
+
+                if ($('#idCustomer').val() == "") {
                     window.location.href = '../kidolshop/login';
-                }else{
+                } else {
                     $.ajax({
                         url: '{{url("/add-to-wishlist")}}',
                         method: 'POST',
-                        data: {idProduct:idProduct, _token:_token},
-                        success:function(data){
+                        data: {
+                            idProduct: idProduct,
+                            _token: _token
+                        },
+                        success: function(data) {
                             $('.modal-AddToWishList').modal('show');
                         }
                     });
-                } 
+                }
             });
 
             // Xoá 1 sp trong giỏ hàng
-            $('.delete-pd-cart').on('click',function(){
+            $('.delete-pd-cart').on('click', function() {
                 var idCart = $(this).data("id");
                 var _token = $(this).data("token");
 
                 $.ajax({
-                    url: APP_URL + '/delete-pd-cart/'+idCart,
+                    url: APP_URL + '/delete-pd-cart/' + idCart,
                     method: 'DELETE',
-                    data: {idCart:idCart,_token:_token},
-                    success:function(data){
+                    data: {
+                        idCart: idCart,
+                        _token: _token
+                    },
+                    success: function(data) {
                         location.reload();
                     }
                 });
             });
 
             // So sánh sản phẩm
-            $('.add-to-compare').on('click',function(){
+            $('.add-to-compare').on('click', function() {
                 var idCategory = $(this).data('idcat');
                 var idProduct = $(this).attr('id');
                 var _token = $('input[name="_token"]').val();
@@ -847,184 +845,193 @@
                 $.ajax({
                     url: '{{url("/modal-compare")}}',
                     method: 'POST',
-                    data: {idCategory:idCategory,idProduct:idProduct, _token:_token},
-                    success:function(data){
+                    data: {
+                        idCategory: idCategory,
+                        idProduct: idProduct,
+                        _token: _token
+                    },
+                    success: function(data) {
                         $('#modal-Compare').html(data);
                         $('#modal-Compare').modal('show');
 
                         $("#search-pd-compare").on("keyup", function() {
                             var value = $(this).val();
-                            
+
                             $.ajax({
                                 url: '{{url("/modal-compare-search")}}',
                                 method: 'POST',
-                                data: {idCategory:idCategory,idProduct:idProduct,value:value, _token:_token},
-                                success:function(data){
+                                data: {
+                                    idCategory: idCategory,
+                                    idProduct: idProduct,
+                                    value: value,
+                                    _token: _token
+                                },
+                                success: function(data) {
                                     $('.modal-compare-body').html(data);
                                 }
                             });
                         });
 
-                        $(document).on("click",'input[type=checkbox]', function() {
+                        $(document).on("click", 'input[type=checkbox]', function() {
                             var product_id = $(this).data("id");
                             var numberOfChecked = $('input:checkbox:checked').length;
 
-                            if(numberOfChecked>2){
+                            if (numberOfChecked > 2) {
                                 $('#WarningModal').modal('show');
                                 $(this).prop('checked', false);
-                            }else{
-                                if($(this).is(":checked")){
-                                    $("#product-image-"+product_id).css("border","#f379a7 3px solid");
-                                    $("#product-image-"+product_id).css("border-radius","10px");
-                                    $(".btn-compare").css("pointer-events","auto");
-                                    $(".btn-compare").css("background-color","#f379a7");
-                                    $("#product-"+product_id).val(product_id);
-                                }
-                                else if($(this).is(":not(:checked)")){
-                                    $("#product-image-"+product_id).css("border","none");
-                                    $("#product-"+product_id).val("	");
-                                    $(document).ready(function(){  
+                            } else {
+                                if ($(this).is(":checked")) {
+                                    $("#product-image-" + product_id).css("border", "#f379a7 3px solid");
+                                    $("#product-image-" + product_id).css("border-radius", "10px");
+                                    $(".btn-compare").css("pointer-events", "auto");
+                                    $(".btn-compare").css("background-color", "#f379a7");
+                                    $("#product-" + product_id).val(product_id);
+                                } else if ($(this).is(":not(:checked)")) {
+                                    $("#product-image-" + product_id).css("border", "none");
+                                    $("#product-" + product_id).val("	");
+                                    $(document).ready(function() {
                                         var $fields = $(this).find('input[name="chk_product[]"]:checked');
                                         if (!$fields.length) {
-                                            $(".btn-compare").css("pointer-events","none");
-                                            $(".btn-compare").css("background-color","#b9b5b5");
+                                            $(".btn-compare").css("pointer-events", "none");
+                                            $(".btn-compare").css("background-color", "#b9b5b5");
                                         }
                                     });
                                 }
                             }
                         });
 
-                        $('.btn-compare').on('click',function(){
-                            chk_product = $("input[name='chk_product[]']:checked").map(function () {
+                        $('.btn-compare').on('click', function() {
+                            chk_product = $("input[name='chk_product[]']:checked").map(function() {
                                 return this.value;
                             }).get();
-                            var _token = $('input[name="_token"]').val();
+                            var cmp_pro = '';
 
-                            $.ajax({
-                                url: '{{url("/submit-compare")}}',
-                                method: 'POST',
-                                data: {chk_product:chk_product,idProduct:idProduct, _token:_token},
-                                success:function(data){
-                                    window.location.href = '../kidolshop/compare';
-                                }
-                            });
+                            for (i = 0; i < chk_product.length; i++) {
+                                cmp_pro += ',' + chk_product[i];
+                            }
+                            window.location.href = '../kidolshop/compare?product=' + idProduct + cmp_pro;
                         });
                     }
                 });
             });
 
             // Gợi ý tìm kiếm sản phẩm
-            $('#search-input').on('keyup',function(){
+            $('#search-input').on('keyup', function() {
                 var value = $(this).val();
                 var _token = $('input[name="_token"]').val();
-                if(value != ''){
+                if (value != '') {
                     $.ajax({
                         url: '{{url("/search-suggestions")}}',
                         method: 'POST',
-                        data: {value:value, _token:_token},
-                        success:function(data){
+                        data: {
+                            value: value,
+                            _token: _token
+                        },
+                        success: function(data) {
                             $('.search-product').fadeIn();
                             $('.search-product').html(data);
 
-                            $('.search-product-item').on('click',function(){
+                            $('.search-product-item').on('click', function() {
                                 $('#search-input').val($(this).text());
                                 $('.search-product').fadeOut();
                             });
                         }
                     });
-                }else $('.search-product').fadeOut();
+                } else $('.search-product').fadeOut();
             });
 
-            $('#search-input').on('blur',function(){
+            $('#search-input').on('blur', function() {
                 $('.search-product').fadeOut();
             });
 
             // Bộ lọc tìm kiếm
-            var category = [], tempArrayCat = [], brand = [], tempArrayBrand = [];
+            var category = [],
+                tempArrayCat = [],
+                brand = [],
+                tempArrayBrand = [];
             url = window.location.href;
 
-            $(".filter-product").on("click", function() 
-            {
+            $(".filter-product").on("click", function() {
                 var sort_by = $('.select-input__sort').data("sort");
                 var min_price = $('.input-filter-price.min').val();
                 var max_price = $('.input-filter-price.max').val();
                 var min_price_filter = '';
                 var max_price_filter = '';
-                
-                if(url.indexOf("search?keyword=") != -1){
-                    var keyword = $('#keyword-link').val(); 
-                    page = 'search?keyword=' +keyword;
-                }else page = 'store?show=all';
 
-                $.each( $("[data-filter='brand']:checked"), function(){
+                if (url.indexOf("search?keyword=") != -1) {
+                    var keyword = $('#keyword-link').val();
+                    page = 'search?keyword=' + keyword;
+                } else page = 'store?show=all';
+
+                $.each($("[data-filter='brand']:checked"), function() {
                     tempArrayBrand.push($(this).val());
                 });
                 tempArrayBrand.reverse();
 
-                $.each( $("[data-filter='category']:checked"), function(){
+                $.each($("[data-filter='category']:checked"), function() {
                     tempArrayCat.push($(this).val());
                 });
                 tempArrayCat.reverse();
-   
-                if(min_price != '' && max_price != '' && parseInt(min_price) > parseInt(max_price)) $('.alert-filter-price').removeClass("d-none");
-                else{
-                    if(min_price != '') min_price_filter = '&priceMin=' + min_price;
+
+                if (min_price != '' && max_price != '' && parseInt(min_price) > parseInt(max_price)) $('.alert-filter-price').removeClass("d-none");
+                else {
+                    if (min_price != '') min_price_filter = '&priceMin=' + min_price;
                     else min_price_filter = '';
 
-                    if(max_price != '') max_price_filter = '&priceMax=' + max_price;
+                    if (max_price != '') max_price_filter = '&priceMax=' + max_price;
                     else max_price_filter = '';
 
-                    if(tempArrayBrand.length !== 0 && tempArrayCat.length !== 0){
-                        brand += '&brand='+tempArrayBrand.toString();
-                        category += '&category='+tempArrayCat.toString();
+                    if (tempArrayBrand.length !== 0 && tempArrayCat.length !== 0) {
+                        brand += '&brand=' + tempArrayBrand.toString();
+                        category += '&category=' + tempArrayCat.toString();
                         window.location.href = page + brand + category + min_price_filter + max_price_filter + sort_by;
-                    }else if(tempArrayCat.length !== 0){
-                        category += '&category='+tempArrayCat.toString();
+                    } else if (tempArrayCat.length !== 0) {
+                        category += '&category=' + tempArrayCat.toString();
                         window.location.href = page + category + min_price_filter + max_price_filter + sort_by;
-                    }else if(tempArrayBrand.length !== 0){
-                        brand += '&brand='+tempArrayBrand.toString();
+                    } else if (tempArrayBrand.length !== 0) {
+                        brand += '&brand=' + tempArrayBrand.toString();
                         window.location.href = page + brand + min_price_filter + max_price_filter + sort_by;
-                    }else window.location.href = page + min_price_filter + max_price_filter + sort_by;
+                    } else window.location.href = page + min_price_filter + max_price_filter + sort_by;
                 }
             });
 
-            $('.select-input__item').on('click',function(){
+            $('.select-input__item').on('click', function() {
                 var sort_by = $(this).data("sort");
                 split_url = url.split("&sort_by");
-                if(url.indexOf("?show=all") != -1 || url.indexOf("?keyword") != -1) window.location.href = split_url[0] + sort_by;
+                if (url.indexOf("?show=all") != -1 || url.indexOf("?keyword") != -1) window.location.href = split_url[0] + sort_by;
                 else window.location.href = url + '?show=all' + sort_by;
             });
 
-            $('.btn-filter-price').on('click',function(){
+            $('.btn-filter-price').on('click', function() {
                 var min_price = $('.input-filter-price.min').val();
                 var max_price = $('.input-filter-price.max').val();
                 var min_price_filter = '';
                 var max_price_filter = '';
 
-                if(min_price != '' && max_price != '' && parseInt(min_price) > parseInt(max_price)) $('.alert-filter-price').removeClass("d-none");
-                else{
-                    if(min_price != '') min_price_filter = '&priceMin=' + min_price;
+                if (min_price != '' && max_price != '' && parseInt(min_price) > parseInt(max_price)) $('.alert-filter-price').removeClass("d-none");
+                else {
+                    if (min_price != '') min_price_filter = '&priceMin=' + min_price;
                     else min_price_filter = '';
 
-                    if(max_price != '') max_price_filter = '&priceMax=' + max_price;
+                    if (max_price != '') max_price_filter = '&priceMax=' + max_price;
                     else max_price_filter = '';
 
-                    if(url.indexOf("&sort_by") != -1){
+                    if (url.indexOf("&sort_by") != -1) {
                         split_url = url.split("&sort_by");
-                        if(url.indexOf("&price") != -1){
-                            split_url_price = url.split("&price");                   
+                        if (url.indexOf("&price") != -1) {
+                            split_url_price = url.split("&price");
                             window.location.href = split_url_price[0] + min_price_filter + max_price_filter + "&sort_by" + split_url[1];
-                        }
-                        else window.location.href = split_url[0] + min_price_filter + max_price_filter + "&sort_by" + split_url[1];
-                    }else{
+                        } else window.location.href = split_url[0] + min_price_filter + max_price_filter + "&sort_by" + split_url[1];
+                    } else {
                         split_url = url.split("&price");
-                        if(url.indexOf("?show=all") != -1 || url.indexOf("?keyword") != -1)
+                        if (url.indexOf("?show=all") != -1 || url.indexOf("?keyword") != -1)
                             window.location.href = split_url[0] + min_price_filter + max_price_filter;
                         else window.location.href = url + '?show=all' + min_price_filter + max_price_filter;
-                    } 
+                    }
                 }
             });
         });
     </script>
 </body>
+
 </html>

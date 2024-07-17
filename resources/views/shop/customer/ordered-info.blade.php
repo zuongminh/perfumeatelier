@@ -76,7 +76,7 @@
                     <div class="cart-title">
                         <h4 class="title">Tổng giỏ hàng</h4>
                     </div>
-                    <div class="cart-total-table mt-25">
+                    <div class="cart-total-table mt-25" style="position:relative;">
                         <table class="table">
                             <tbody>
                                 <tr>
@@ -123,6 +123,11 @@
                                 <input type="hidden" name="idVoucher" class="idVoucher" value="0">                                
                             </tbody>
                         </table>
+                        @if($address->Payment == 'vnpay')
+                        <div class="col-lg-3 paid_tag">
+                            <div class="h3 p-3 mb-0 text-primary">Đã thanh toán</div>
+                        </div>
+                        @endif
                     </div>
                     <!-- <div class="container__address-content">
                         <div class="container__address-content-hd">

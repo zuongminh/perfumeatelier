@@ -32,7 +32,7 @@
                            <div class="col-lg-7 align-self-center">
                               <div class="p-3">
                                  <h2 class="mb-2">Đăng Nhập</h2>
-                                 <p>Đăng nhập để giữ kết nối.</p>
+                                 
                                  <?php
                                     $message = Session::get('message');
                                     if($message){

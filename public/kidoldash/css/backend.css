@@ -1021,7 +1021,8 @@ pre {
     max-width: 91.66667%; }
   .col-lg-12 {
     flex: 0 0 100%;
-    max-width: 100%; }
+    max-width: 100%;
+  padding-top: 30px; }
   .order-lg-first {
     order: -1; }
   .order-lg-last {
@@ -5421,7 +5422,7 @@ button.bg-light-gray:focus {
 
 .mb-2,
 .my-2 {
-  margin-bottom: 0.5rem !important; }
+  margin-bottom: 100px; }
 
 .ml-2,
 .mx-2 {
@@ -15532,13 +15533,13 @@ fieldset[disabled] .btn {
     font-weight: 400;
     position: absolute;
     pointer-events: none;
-    left: 12px;
-    top: 50%;
+    left: 20px;
+    top: 80%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-100%);
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -ms-transition: all 0.3s ease-in-out;
@@ -15578,7 +15579,7 @@ fieldset[disabled] .btn {
 
 .floating-input:not(:placeholder-shown) {
   color: #676E8A;
-  border: 1px solid #DCDFE8; }
+  border: px solid #DCDFE8; }
   .floating-input:not(:placeholder-shown) ~ label {
     top: 0;
     font-size: 14px;
@@ -20225,14 +20226,17 @@ input[type=number] {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height:162px; 
+  border-radius:10px;
 }
 
-.list-product {
+/* .list-product {
   height: 162.67px;
-}
+} */
 
 .product-item {
   display: inline-block;
+  padding: 15px;
 }
 
 .product-title {
@@ -20333,4 +20337,16 @@ input[type=number] {
 
 .card-body--AllTime:last-child {
   padding: 20px;
+}
+
+.paid_tag {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(-30deg);
+  border: 5px solid #32BDEA;
+  border-radius: 5px;
+  right: -60%;
+  top: -55%;
 }

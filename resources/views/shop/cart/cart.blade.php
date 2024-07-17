@@ -5,10 +5,10 @@
 <div class="page-banner" style="background-image: url(public/kidolshop/images/banner/banner-shop.png);">
     <div class="container">
         <div class="page-banner-content text-center">
-            <h2 class="title">Giỏ Hàng</h2>
+            <h2 class="title">Cart</h2>
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Giỏ Hàng</li>
+                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Menu</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Cart</li>
             </ol>
         </div>
     </div>
@@ -24,12 +24,12 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="image">Hình Ảnh</th>
-                        <th class="product">Sản Phẩm</th>
-                        <th class="price">Giá</th>
-                        <th class="quantity">Số Lượng</th>
-                        <th class="total">Tổng</th>
-                        <th class="remove">Xóa</th>
+                        <th class="image">Picture</th>
+                        <th class="product">Products</th>
+                        <th class="price">Price</th>
+                        <th class="quantity">Quantity</th>
+                        <th class="total">Total</th>
+                        <th class="remove">Remove</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +57,7 @@
                                 <button type="button" class="sub-qty" id="sub-qty-{{$pd_cart->idProduct}}-{{$pd_cart->AttributeProduct}}"><i class="ti-minus"></i></button>
                                 <input type="number" class="QuantityBuy" id="QuantityBuy-{{$pd_cart->idProduct}}" value="{{$pd_cart->QuantityBuy}}" min="1" oninput="validity.valid||(value='1');"/>
                                 <button type="button" class="add-qty" id="{{$pd_cart->idProduct}}-{{$pd_cart->AttributeProduct}}"><i class="ti-plus"></i></button>
-                                <div class="alert-qty-input"><span class="message-qty-input">Mua tối đa {{$pd_cart->Quantity}} sản phẩm!</span></div>
+                                <div class="alert-qty-input"><span class="message-qty-input">Maximum {{$pd_cart->Quantity}} Product!</span></div>
                                 <input type="hidden" value="{{$pd_cart->idCart}}">
                                 <input type="hidden" value="{{$pd_cart->PriceNew}}">
                                 <input type="hidden" value="{{$pd_cart->Quantity}}">
@@ -76,10 +76,10 @@
         </div>
         <div class="cart-btn">
             <div class="cart-btn-left">
-                <a href="{{URL::to('/store')}}" class="btn btn-primary">Tiếp tục mua sắm</a>
+                <a href="{{URL::to('/store')}}" class="btn btn-primary">Continue Shopping</a>
             </div>
             <div class="cart-btn-right">
-                <a href="{{URL::to('/delete-cart')}}" class="btn">Xóa giỏ hàng</a>
+                <a href="{{URL::to('/delete-cart')}}" class="btn">Delete Cart</a>
             </div>
         </div>
 
@@ -87,14 +87,14 @@
             <div class="col-lg-12">
                 <div class="cart-totals">
                     <div class="cart-title">
-                        <h4 class="title">Tổng giỏ hàng</h4>
+                        <h4 class="title">Total Cart</h4>
                     </div>
                     <div class="cart-total-table mt-25">
                         <table class="table">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <p class="value">Thành Tiền</p>
+                                        <p class="value">Cart Total</p>
                                     </td>
                                     <td>
                                         <p class="price">{{number_format($Total,0,',','.')}}đ</p>
@@ -104,14 +104,14 @@
                         </table>
                     </div>
                     <div class="cart-total-btn">
-                        <a href="{{URL::to('/payment')}}" class="btn btn-primary btn-block btn-payment">Thanh toán</a>
+                        <a href="{{URL::to('/payment')}}" class="btn btn-primary btn-block btn-payment">Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-lg-12 mt-30 h2" style="color:#222;">CÓ THỂ BẠN SẼ THÍCH</div>
+            <div class="col-lg-12 mt-30 h2" style="color:#222;">Recommended Products</div>
             <div class="col-lg-12">
                 <?php $id_pds = json_decode($recommend_pds) ?>
                 <div class="row">
@@ -135,10 +135,10 @@
                                     <div class="product-countdown">
                                         <div data-countdown="{{$get_time_sale->SaleEnd}}"></div>
                                     </div>
-                                    @if($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Hết hàng</span>
+                                    @if($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Sold out</span>
                                     @else <span class="sticker-new label-sale">-{{$get_time_sale->Percent}}%</span>
                                     @endif
-                                @elseif($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Hết hàng</span>;
+                                @elseif($product->QuantityTotal == '0') <span class="sticker-new soldout-title">Sold out</span>;
                                 @endif
 
                                 <div class="action-links">

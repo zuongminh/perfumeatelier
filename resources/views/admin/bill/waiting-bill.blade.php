@@ -22,6 +22,7 @@
                                 <th>Mã ĐH</th>
                                 <th>Tên Tài Khoản</th>
                                 <th>SĐT</th>
+                                <th>Thanh Toán</th>
                                 <th>Ngày Đặt Hàng</th>
                                 <th>Thao tác</th>
                             </tr>
@@ -32,6 +33,7 @@
                                 <td>{{$bill->idBill}}</td>
                                 <td>{{$bill->username}}</td>
                                 <td>{{$bill->CusPhone}}</td>
+                                <td>@if($bill->Payment == 'vnpay') VNPay @else Khi nhận hàng @endif</td>
                                 <td>{{$bill->created_at}}</td>
 
                                 <td>
@@ -44,7 +46,7 @@
                                             data-original-title="Xác nhận đơn hàng"><i class="ri-thumb-up-line mr-0"></i>
                                         </button>
                                         <input type="hidden" name="Status" value="1">
-                                        <a class="badge bg-warning mr-2" id="delete-bill-btn" data-toggle="modal" data-target="#modal-delete-bill" data-placement="top" data-original-title="Hủy đơn hàng"
+                                        <a class="badge bg-warning mr-2 delete-bill-btn" data-toggle="modal" data-target="#modal-delete-bill" data-placement="top" data-original-title="Hủy đơn hàng"
                                             data-id="{{$bill->idBill}}" style="cursor:pointer;"><i class="ri-delete-bin-line mr-0"></i>
                                         </a>
                                     </div>
@@ -85,7 +87,7 @@
 <script>
     $(document).ready(function(){  
         APP_URL = '{{url('/')}}' ;
-        $("#delete-bill-btn").on("click", function() {
+        $(".delete-bill-btn").on("click", function() {
             var idBill = $(this).data("id");
             $(".content-delete").html("Bạn có muốn hủy đơn hàng #" +idBill+ " không?");
 

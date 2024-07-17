@@ -59,9 +59,11 @@
                             <div class="col-md-12">                                    
                                 <label>Sản phẩm</label>
                                 <div class="row form-group list-product">
-                                    <a href="#" class="col-md-2 btn add-btn shadow-none d-none d-md-block add-product" data-toggle="modal" data-target="#select-products">
-                                        <i class="las la-plus mr-2" style="font-size:24px;"></i>
-                                        <br><span>Thêm Sản Phẩm</span>
+                                    <a href="#" class="col-md-2 btn add-btn shadow-none d-none d-md-block" style="padding:15px;" data-toggle="modal" data-target="#select-products">
+                                        <div class="add-product">
+                                            <i class="las la-plus mr-2" style="font-size:24px;"></i>
+                                            <br><span>Thêm Sản Phẩm</span>
+                                        </div>    
                                     </a>
                                 </div>
                             </div>
@@ -172,6 +174,12 @@
                     })
                 })
             }
+        });
+
+        $("#confirm").click(function(){
+            var $fields = $("#form-add-sale").find('input[name="chk_product[]"]:checked');
+            if (!$fields.length) $(".add-product").css("height","162px");
+            else $(".add-product").css("height","100%");
         });
 
         $('#form-add-sale').submit(function() {

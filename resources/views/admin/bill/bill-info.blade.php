@@ -134,6 +134,11 @@
                                         <h3 class="text-primary font-weight-700">{{number_format($total_bill,0,',','.')}}đ</h3>
                                     </div>
                                 </div>
+                                @if($address->Payment == 'vnpay')
+                                <div class="col-lg-3 paid_tag">
+                                    <div class="h3 p-3 mb-0 text-primary">Đã thanh toán</div>
+                                </div>
+                                @endif
                             </div>
                         </div>                            
                     </div>

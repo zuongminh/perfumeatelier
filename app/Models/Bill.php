@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Bill extends Model
 {
     public $timestamp = false;
-    protected $fillable = ['idCustomer','Address','Voucher','PhoneNumber','CustomerName','ReceiveDate','created_at','Status','TotalBill'];
+    protected $fillable = ['idCustomer','Address','Payment','Voucher','PhoneNumber','CustomerName','ReceiveDate','created_at','Status','TotalBill'];
     protected $primaryKey = 'idBill';
     protected $table = 'bill';
 }

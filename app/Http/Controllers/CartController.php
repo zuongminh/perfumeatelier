@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 
+
 class CartController extends Controller
 {
     function array_zip_merge() {
@@ -49,6 +50,7 @@ class CartController extends Controller
         $this->checkCart();
         $list_category = Category::get();
         $list_brand = Brand::get();
+        $recommend_pds_arrays = [];
 
         $list_pd_cart = Cart::join('product','product.idProduct','=','cart.idProduct')
             ->join('productimage','productimage.idProduct','cart.idProduct')
@@ -59,6 +61,9 @@ class CartController extends Controller
             $idBrand = $pd_cart->idBrand;
             $idCategory = $pd_cart->idCategory;
 
+            //Mảng các sản phẩm đã lặp qua
+            $checked_pro[] = $pd_cart->idProduct;
+
             // Danh sách sản phẩm gợi ý của 1 sản phẩm trong giỏ hàng
             $list_recommend_pds = Product::whereRaw("MATCH (ProductName) AGAINST (?)", Product::fullTextWildcards($pd_cart->ProductName))
                 ->whereNotIn('idProduct',[$pd_cart->idProduct])->where('StatusPro','1')
@@ -68,25 +73,37 @@ class CartController extends Controller
             });
             $list_recommend_pd = $list_recommend_pds->get();
 
-            // Thêm từng sản phẩm gợi ý của 1 sản phẩm vào 1 mảng
-            foreach($list_recommend_pd as $recommend_pd){
-                $recommend_pds_array[$key][] = $recommend_pd->idProduct;
-            }   
-
-            // Thêm từng mảng thứ $key vào 1 mảng lớn
-            $recommend_pds_arrays[] = $recommend_pds_array[$key];
-        }
-
-        // Hàm gộp mảng, xen kẽ các phần tử của từng mảng
-        for ($args = $recommend_pds_arrays; count($args); $args = array_filter($args)) {
-            // &$arg allows array_shift() to change the original.
-            foreach ($args as &$arg) {
-              $output[] = array_shift($arg);
+            if($list_recommend_pd->count() > 0){
+                // Thêm từng sản phẩm gợi ý của 1 sản phẩm vào 1 mảng
+                foreach($list_recommend_pd as $recommend_pd){
+                    $recommend_pds_array[$key][] = $recommend_pd->idProduct;
+                }   
+    
+                // Thêm từng mảng thứ $key vào 1 mảng lớn
+                $recommend_pds_arrays[] = $recommend_pds_array[$key];
             }
         }
 
-        $recommend_pds_unique = array_unique($output); // Lọc các phần tử trùng nhau
-        $recommend_pds = json_encode($recommend_pds_unique);
+        if(count($recommend_pds_arrays) > 0){
+            // Hàm gộp mảng, xen kẽ các phần tử của từng mảng
+            for ($args = $recommend_pds_arrays; count($args); $args = array_filter($args)) {
+                // &$arg allows array_shift() to change the original.
+                foreach ($args as &$arg) {
+                $output[] = array_shift($arg);
+                }
+            }
+
+            $recommend_pds_last = array_diff($output, $checked_pro); // Xóa các sản phẩm đã lặp qua
+            $recommend_pds_unique = array_unique($recommend_pds_last); // Lọc các phần tử trùng nhau
+            $recommend_pds = json_encode($recommend_pds_unique);
+        }else{
+            $featured_pds = Product::join('productimage','productimage.idProduct','=','product.idProduct')
+            ->where('StatusPro','1')->orderBy('Sold','DESC')->select('product.idProduct')->get();
+
+            $featured_pds_array = $featured_pds->pluck('idProduct')->toArray();
+
+            $recommend_pds = json_encode($featured_pds_array);
+        }
 
         return view("shop.cart.cart")->with(compact('list_category','list_brand','list_pd_cart','recommend_pds'));
     }
@@ -120,10 +137,57 @@ class CartController extends Controller
     }
 
     // Chuyển đến trang đặt hàng thành công
-    public function success_order(){
+    public function success_order(Request $request){
         $list_category = Category::get();
         $list_brand = Brand::get();
-        return view("shop.cart.success-order")->with(compact('list_category','list_brand'));
+        if($request->vnp_TransactionStatus && $request->vnp_TransactionStatus == '00'){
+            // $test = dd($request->toArray());
+            $Bill = new Bill();
+            $BillHistory = new BillHistory();
+            $OrderInfo = explode("_",$request->vnp_OrderInfo);
+
+            $get_address = AddressCustomer::find($OrderInfo[0]);
+            $Bill->idCustomer = $OrderInfo[2];
+            $Bill->TotalBill = $request->vnp_Amount/100;
+            $Bill->Voucher = $OrderInfo[1];
+            $Bill->Address = $get_address->Address;
+            $Bill->PhoneNumber = $get_address->PhoneNumber;
+            $Bill->CustomerName = $get_address->CustomerName;
+            $Bill->Status = 1;
+            $Bill->Payment = 'vnpay';
+    
+            $Bill->save();
+            $get_Bill = Bill::where('created_at', now())->where('idCustomer',$OrderInfo[2])->first();
+            $get_cart = Cart::where('idCustomer',$OrderInfo[2])->get();
+    
+            foreach($get_cart as $key => $cart)
+            {
+                $data_billinfo = array(
+                    'idBill' => $get_Bill->idBill,
+                    'idProduct' => $cart->idProduct,
+                    'AttributeProduct' => $cart->AttributeProduct,
+                    'Price' => $cart->PriceNew,
+                    'QuantityBuy' => $cart->QuantityBuy,
+                    'idProAttr' => $cart->idProAttr,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                );
+                BillInfo::insert($data_billinfo);
+                DB::update(DB::RAW('update product set QuantityTotal = QuantityTotal - '.$cart->QuantityBuy.' where idProduct = '.$cart->idProduct.''));
+                DB::update(DB::RAW('update product_attribute set Quantity = Quantity - '.$cart->QuantityBuy.' where idProAttr = '.$cart->idProAttr.''));
+            }
+    
+            if($get_Bill->Voucher != '') DB::update(DB::RAW('update voucher set VoucherQuantity = VoucherQuantity - 1 where idVoucher = '.$OrderInfo[3].''));
+            Cart::where('idCustomer',$OrderInfo[2])->delete();
+            $BillHistory->idBill = $get_Bill->idBill;
+            $BillHistory->AdminName = 'System';
+            $BillHistory->Status = 1;
+            $BillHistory->save();
+            return view("shop.cart.success-order")->with(compact('list_category','list_brand'));
+        }
+        else if($request->vnp_TransactionStatus && $request->vnp_TransactionStatus != '00') 
+            return Redirect::to('cart');
+        else return view("shop.cart.success-order")->with(compact('list_category','list_brand'));
     }
 
     // Hiện giỏ hàng ở header
@@ -259,40 +323,110 @@ class CartController extends Controller
     // Đặt hàng
     public function submit_payment(Request $request){
         $data = $request->all();
-        
         $Bill = new Bill();
 
-        $get_address = AddressCustomer::find($data['address_rdo']);
-        $Bill->idCustomer = Session::get('idCustomer');
-        $Bill->TotalBill = $data['TotalBill'];
-        $Bill->Voucher = $data['Voucher'];
-        $Bill->Address = $get_address->Address;
-        $Bill->PhoneNumber = $get_address->PhoneNumber;
-        $Bill->CustomerName = $get_address->CustomerName;
-
-        $Bill->save();
-        $get_Bill = Bill::where('created_at', now())->where('idCustomer',Session::get('idCustomer'))->first();
-        $get_cart = Cart::where('idCustomer',Session::get('idCustomer'))->get();
-
-        foreach($get_cart as $key => $cart)
-        {
-            $data_billinfo = array(
-                'idBill' => $get_Bill->idBill,
-                'idProduct' => $cart->idProduct,
-                'AttributeProduct' => $cart->AttributeProduct,
-                'Price' => $cart->PriceNew,
-                'QuantityBuy' => $cart->QuantityBuy,
-                'idProAttr' => $cart->idProAttr,
-                'created_at' => now(),
-                'updated_at' => now()
+        if($data['checkout'] == 'vnpay'){
+            $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+            $vnp_Returnurl = "http://localhost:8080/kidolshop/success-order";
+            $vnp_TmnCode = "135HNKES";//Mã website tại VNPAY 
+            $vnp_HashSecret = "PNTYSDLJBKCKUTQCWFPRRBPJLBECSWCR"; //Chuỗi bí mật
+            
+            $vnp_TxnRef = base64_encode(openssl_random_pseudo_bytes(30)); //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+            $vnp_OrderInfo = $data['address_rdo'].'_'.$data['Voucher'].'_'.Session::get('idCustomer').'_'.$data['idVoucher'];
+            $vnp_OrderType = 'billpayment';
+            $vnp_Amount = $data['TotalBill'] * 100;
+            $vnp_Locale = 'vn';
+            $vnp_BankCode = 'NCB';
+            $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];
+            //Add Params of 2.0.1 Version
+            // $vnp_ExpireDate = $_POST['txtexpire'];
+            //Billing
+            $inputData = array(
+                "vnp_Version" => "2.1.0",
+                "vnp_TmnCode" => $vnp_TmnCode,
+                "vnp_Amount" => $vnp_Amount,
+                "vnp_Command" => "pay",
+                "vnp_CreateDate" => date('YmdHis'),
+                "vnp_CurrCode" => "VND",
+                "vnp_IpAddr" => $vnp_IpAddr,
+                "vnp_Locale" => $vnp_Locale,
+                "vnp_OrderInfo" => $vnp_OrderInfo,
+                "vnp_OrderType" => $vnp_OrderType,
+                "vnp_ReturnUrl" => $vnp_Returnurl,
+                "vnp_TxnRef" => $vnp_TxnRef
             );
-            BillInfo::insert($data_billinfo);
-            DB::update(DB::RAW('update product set QuantityTotal = QuantityTotal - '.$cart->QuantityBuy.' where idProduct = '.$cart->idProduct.''));
-            DB::update(DB::RAW('update product_attribute set Quantity = Quantity - '.$cart->QuantityBuy.' where idProAttr = '.$cart->idProAttr.''));
+            
+            if (isset($vnp_BankCode) && $vnp_BankCode != "") {
+                $inputData['vnp_BankCode'] = $vnp_BankCode;
+            }
+            if (isset($vnp_Bill_State) && $vnp_Bill_State != "") {
+                $inputData['vnp_Bill_State'] = $vnp_Bill_State;
+            }
+            
+            //var_dump($inputData);
+            ksort($inputData);
+            $query = "";
+            $i = 0;
+            $hashdata = "";
+            foreach ($inputData as $key => $value) {
+                if ($i == 1) {
+                    $hashdata .= '&' . urlencode($key) . "=" . urlencode($value);
+                } else {
+                    $hashdata .= urlencode($key) . "=" . urlencode($value);
+                    $i = 1;
+                }
+                $query .= urlencode($key) . "=" . urlencode($value) . '&';
+            }
+            
+            $vnp_Url = $vnp_Url . "?" . $query;
+            if (isset($vnp_HashSecret)) {
+                $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//  
+                $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
+            }
+            $returnData = array('code' => '00'
+                , 'message' => 'success'
+                , 'data' => $vnp_Url);
+                if (isset($_POST['redirect'])) {
+                    header('Location: ' . $vnp_Url);
+                    die();
+                } else {
+                    echo json_encode($returnData);
+                }
+        } 
+        else if($data['checkout'] == 'cash'){
+            $get_address = AddressCustomer::find($data['address_rdo']);
+            $Bill->idCustomer = Session::get('idCustomer');
+            $Bill->TotalBill = $data['TotalBill'];
+            $Bill->Voucher = $data['Voucher'];
+            $Bill->Address = $get_address->Address;
+            $Bill->PhoneNumber = $get_address->PhoneNumber;
+            $Bill->CustomerName = $get_address->CustomerName;
+            $Bill->Payment = 'cash';
+    
+            $Bill->save();
+            $get_Bill = Bill::where('created_at', now())->where('idCustomer',Session::get('idCustomer'))->first();
+            $get_cart = Cart::where('idCustomer',Session::get('idCustomer'))->get();
+    
+            foreach($get_cart as $key => $cart)
+            {
+                $data_billinfo = array(
+                    'idBill' => $get_Bill->idBill,
+                    'idProduct' => $cart->idProduct,
+                    'AttributeProduct' => $cart->AttributeProduct,
+                    'Price' => $cart->PriceNew,
+                    'QuantityBuy' => $cart->QuantityBuy,
+                    'idProAttr' => $cart->idProAttr,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                );
+                BillInfo::insert($data_billinfo);
+                DB::update(DB::RAW('update product set QuantityTotal = QuantityTotal - '.$cart->QuantityBuy.' where idProduct = '.$cart->idProduct.''));
+                DB::update(DB::RAW('update product_attribute set Quantity = Quantity - '.$cart->QuantityBuy.' where idProAttr = '.$cart->idProAttr.''));
+            }
+    
+            if($get_Bill->Voucher != '') DB::update(DB::RAW('update voucher set VoucherQuantity = VoucherQuantity - 1 where idVoucher = '.$data['idVoucher'].''));
+            Cart::where('idCustomer',Session::get('idCustomer'))->delete();
+            return Redirect::to('success-order')->send();
         }
-
-        if($get_Bill->Voucher != '') DB::update(DB::RAW('update voucher set VoucherQuantity = VoucherQuantity - 1 where idVoucher = '.$data['idVoucher'].''));
-        Cart::where('idCustomer',Session::get('idCustomer'))->delete();
-        return Redirect::to('success-order')->send();
     }
 }

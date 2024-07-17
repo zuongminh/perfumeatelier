@@ -362,7 +362,7 @@
                               <svg class="svg-icon" id="p-dash9" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><rect x="7" y="7" width="3" height="9"></rect><rect x="14" y="7" width="3" height="5"></rect>
                               </svg>
-                              <span class="ml-4">Quản lý bài viết</span>
+                              <span class="ml-4">Quản lý tin tức</span>
                               <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                               </svg>
@@ -534,7 +534,7 @@
                               <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                               </svg>
-                              <span class="ml-4">Quản Lý Bài Viết</span>
+                              <span class="ml-4">Quản Lý Tin Tức</span>
                               <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                               </svg>
@@ -542,12 +542,12 @@
                           <ul id="otherpage" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                 <li class="{{ Request::is('manage-blog') ? 'active' : '' }}">
                                     <a href="{{URL::to('/manage-blog')}}">
-                                        <i class="las la-minus"></i><span>Danh sách bài viết</span>
+                                        <i class="las la-minus"></i><span>Danh sách tin tức</span>
                                     </a>
                                 </li>
                                 <li class="{{ Request::is('add-blog') ? 'active' : '' }}">
                                     <a href="{{URL::to('/add-blog')}}">
-                                        <i class="las la-minus"></i><span>Thêm bài viết</span>
+                                        <i class="las la-minus"></i><span>Thêm tin tức</span>
                                     </a>
                                 </li>
                                 <!--  <li class="">
@@ -838,7 +838,7 @@
                               <svg class="svg-icon" id="p-dash8" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                               </svg>
-                              <span class="ml-4">Quản Lý Bài Viết</span>
+                              <span class="ml-4">Quản Lý Tin Tức</span>
                               <svg class="svg-icon iq-arrow-right arrow-active" width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                   <polyline points="10 15 15 20 20 15"></polyline><path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
                               </svg>
@@ -846,12 +846,12 @@
                           <ul id="otherpage" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle">
                                 <li class="{{ Request::is('manage-blog') ? 'active' : '' }}">
                                     <a href="{{URL::to('/manage-blog')}}">
-                                        <i class="las la-minus"></i><span>Danh sách bài viết</span>
+                                        <i class="las la-minus"></i><span>Danh sách tin tức</span>
                                     </a>
                                 </li>
                                 <li class="{{ Request::is('add-blog') ? 'active' : '' }}"> 
                                     <a href="{{URL::to('/add-blog')}}">
-                                        <i class="las la-minus"></i><span>Thêm bài viết</span>
+                                        <i class="las la-minus"></i><span>Thêm tin tức</span>
                                     </a>
                                 </li>
                           </ul>
@@ -1039,12 +1039,42 @@
                                           <div class="card-body p-0 ">
                                               <div class="cust-title p-3">
                                                   <div class="d-flex align-items-center justify-content-between">
-                                                      <h5 class="mb-0">Notifications</h5>
-                                                      <a class="badge badge-primary badge-card" href="#">3</a>
+                                                      <h5 class="mb-0">Thông báo</h5>
+                                                      <a class="badge badge-primary badge-card" href="#">2</a>
                                                   </div>
                                               </div>
                                               <div class="px-3 pt-0 pb-0 sub-card">
                                                   <a href="#" class="iq-sub-card">
+                                                      <div class="media align-items-center cust-card py-3 border-bottom">
+                                                          <div class="">
+                                                              <img class="avatar-50 rounded-small"
+                                                                  src="{{asset('public/kidoldash/images/logo.png')}}" alt="01">
+                                                          </div>
+                                                          <div class="media-body ml-3">
+                                                              <div class="d-flex align-items-center justify-content-between">
+                                                                  <h6 class="mb-0">Sao lưu dữ liệu</h6>
+                                                                  <small class="text-dark"><b>12 : 47 pm</b></small>
+                                                              </div>
+                                                              <small class="mb-0">Đã đến thời gian sao lưu dữ liệu, nhấn để xem chi tiết!</small>
+                                                          </div>
+                                                      </div>
+                                                  </a>
+                                                  <a href="#" class="iq-sub-card">
+                                                      <div class="media align-items-center cust-card py-3 border-bottom">
+                                                          <div class="">
+                                                              <img class="avatar-50 rounded-small"
+                                                                  src="{{asset('public/kidoldash/images/logo.png')}}" alt="01">
+                                                          </div>
+                                                          <div class="media-body ml-3">
+                                                              <div class="d-flex align-items-center justify-content-between">
+                                                                  <h6 class="mb-0">Bảo trì hệ thống</h6>
+                                                                  <small class="text-dark"><b>16 : 50 pm</b></small>
+                                                              </div>
+                                                              <small class="mb-0">Đã đến thời gian bảo trì hệ thống, nhấn để xem chi tiết!</small>
+                                                          </div>
+                                                      </div>
+                                                  </a>
+                                                  <!-- <a href="#" class="iq-sub-card">
                                                       <div class="media align-items-center cust-card py-3 border-bottom">
                                                           <div class="">
                                                               <img class="avatar-50 rounded-small"
@@ -1058,41 +1088,11 @@
                                                               <small class="mb-0">Lorem ipsum dolor sit amet</small>
                                                           </div>
                                                       </div>
-                                                  </a>
-                                                  <a href="#" class="iq-sub-card">
-                                                      <div class="media align-items-center cust-card py-3 border-bottom">
-                                                          <div class="">
-                                                              <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('public/kidoldash/images/user/02.jpg')}}" alt="02">
-                                                          </div>
-                                                          <div class="media-body ml-3">
-                                                              <div class="d-flex align-items-center justify-content-between">
-                                                                  <h6 class="mb-0">Ashlynn Franci</h6>
-                                                                  <small class="text-dark"><b>11 : 30 pm</b></small>
-                                                              </div>
-                                                              <small class="mb-0">Lorem ipsum dolor sit amet</small>
-                                                          </div>
-                                                      </div>
-                                                  </a>
-                                                  <a href="#" class="iq-sub-card">
-                                                      <div class="media align-items-center cust-card py-3">
-                                                          <div class="">
-                                                              <img class="avatar-50 rounded-small"
-                                                                  src="{{asset('public/kidoldash/images/user/03.jpg')}}" alt="03">
-                                                          </div>
-                                                          <div class="media-body ml-3">
-                                                              <div class="d-flex align-items-center justify-content-between">
-                                                                  <h6 class="mb-0">Kianna Carder</h6>
-                                                                  <small class="text-dark"><b>11 : 21 pm</b></small>
-                                                              </div>
-                                                              <small class="mb-0">Lorem ipsum dolor sit amet</small>
-                                                          </div>
-                                                      </div>
-                                                  </a>
+                                                  </a> -->
                                               </div>
                                               <a class="right-ic btn btn-primary btn-block position-relative p-2" href="#"
                                                   role="button">
-                                                  View All
+                                                  Xem tất cả
                                               </a>
                                           </div>
                                       </div>

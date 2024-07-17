@@ -156,7 +156,7 @@ class BillController extends Controller
             $this->checkLogin();
             $list_category = Category::get();
             $list_brand = Brand::get();
-            $list_bill = Bill::where('bill.idCustomer',Session::get('idCustomer'))->get();
+            $list_bill = Bill::where('bill.idCustomer',Session::get('idCustomer'))->orderBy('idBill','desc')->get();
             return view("shop.customer.ordered")->with(compact('list_category','list_brand','list_bill'));
         }
 

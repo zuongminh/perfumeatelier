@@ -386,7 +386,20 @@ class ProductController extends Controller
             $this_pro = Product::where('ProductSlug',$ProductSlug)->first();
             
             if($this_pro->StatusPro != '0'){
+                $viewer = new Viewer();
                 
+                if(Session::get('idCustomer') == '') $idCustomer = session()->getId();
+                else $idCustomer = (string)Session::get('idCustomer');
+                
+                $viewer->idCustomer = $idCustomer;
+                $viewer->idProduct = $this_pro->idProduct;
+                
+                if(Viewer::where('idCustomer',$idCustomer)->where('idProduct',$this_pro->idProduct)->count() == 0){
+                    if(Viewer::where('idCustomer',$idCustomer)->count() >= 3){
+                        $idView = Viewer::where('idCustomer',$idCustomer)->orderBy('idView','asc')->take(1)->delete();
+                        $viewer->save();
+                    }else $viewer->save();
+                }
 
                 $idBrand = $this_pro->idBrand;
                 $idCategory = $this_pro->idCategory;

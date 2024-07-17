@@ -95,8 +95,8 @@
                                             <form action="{{URL::to('/confirm-bill/'.$bill->idBill)}}" method="POST"> @csrf
                                             <td class="d-flex justify-content-center">
                                                 <a class="view-hover h3 mr-2" href="{{URL::to('/ordered-info/'.$bill->idBill)}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết"><i class="fa fa-eye"></i></a>
-                                                <button class="view-hover h3" style=" border:none; background-color: transparent;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xác nhận hoàn thành"><i class="fa fa-check-circle"></i></button>
-                                                <input type="hidden" name="Status" value="2">    
+                                                <!-- <button class="view-hover h3" style=" border:none; background-color: transparent;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xác nhận hoàn thành"><i class="fa fa-check-circle"></i></button>
+                                                <input type="hidden" name="Status" value="2">     -->
                                             </td>
                                             </form>
                                         </tr>

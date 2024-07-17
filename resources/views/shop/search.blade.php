@@ -6,10 +6,10 @@
 <div class="page-banner" style="background-image: url(public/kidolshop/images/banner/banner-shop.png);">
     <div class="container">
         <div class="page-banner-content text-center">
-            <h2 class="title">Tìm Kiếm Sản Phẩm</h2>
+            <h2 class="title">Search...</h2>
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Tìm kiếm sản phẩm</li>
+                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Search</li>
             </ol>
         </div>
     </div>

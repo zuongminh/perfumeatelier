@@ -5,10 +5,10 @@
 <div class="page-banner" style="background-image: url(../public/kidolshop/images/banner/banner_blog.png);">
     <div class="container">
         <div class="page-banner-content text-center">
-            <h2 class="title">Chi Tiết Bài Viết</h2>
+            <h2 class="title">Read More</h2>
             <ol class="breadcrumb justify-content-center">
-                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{URL::to('/blog')}}">Tin tức</a></li>
+                <li class="breadcrumb-item"><a href="{{URL::to('/home')}}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{URL::to('/blog')}}">Blogs</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{$Blog->BlogTitle}}</li>
             </ol>
         </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="sidebar-post">
-                    <h3 class="widget-title">Bài viết gần đây</h3>
+                    <h3 class="widget-title">Latest</h3>
                     <ul class="post-items">
                         @foreach($list_new_blog as $key => $new_blog)
                         <li>
